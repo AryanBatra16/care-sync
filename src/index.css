@@ -53,6 +53,8 @@
   --color-outline-variant: #bdc9c6;
 
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-headline: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
 }
 
 body {
