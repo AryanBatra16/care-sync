@@ -1,11 +1,14 @@
 import React from 'react';
 import { PageId } from '../types';
+import { LanguageCode, t } from '../lib/translations';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
+  language: LanguageCode;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, language }) => {
+  const tr = t(language);
   return (
     <footer className="w-full bg-white border-t border-slate-200 mt-auto">
       {/* 24/7 Crisis Hotline Alert Banner */}
@@ -56,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
               <span className="font-bold text-slate-800 text-sm">CareSync</span>
             </button>
-            <p className="max-w-[220px]">Your session is designed with privacy and confidentiality in mind.</p>
+            <p className="max-w-[220px]">{tr.footerTagline}</p>
           </div>
 
           {/* Product column */}

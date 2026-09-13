@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
+import { LanguageCode, t } from '../lib/translations';
 
 interface HeaderProps {
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
+  language: LanguageCode;
 }
 
-export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, language }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isLandingPage = currentPage === 'landing';
+  const tr = t(language);
 
   const handleScrollToFeatures = () => {
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
@@ -133,79 +136,81 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </div>
         ) : (
           /* Authenticated App Nav */
-          <div className="h-16 md:h-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="h-16 md:h-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center gap-4">
             {/* Left section: Hamburger Button + Brand Mark */}
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               {/* Hamburger Button */}
               <button
                 onClick={() => setDrawerOpen(true)}
-                className="relative p-2.5 -ml-1.5 rounded-xl text-slate-700 hover:text-[#005c55] hover:bg-[#eff4ff] active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#005c55]/20"
+                className="relative p-2.5 -ml-1.5 rounded-xl text-slate-700 hover:text-[#005c55] hover:bg-[#eff4ff] active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#005c55]/20 shrink-0"
                 aria-label="Open navigation menu"
                 title="Open menu"
               >
-                <span className="material-symbols-outlined text-[24px] transition-transform duration-200 group-hover:scale-110">
-                  menu
+                <span className="relative">
+                  <span className="material-symbols-outlined text-[24px] transition-transform duration-200 group-hover:scale-110 block">
+                    menu
+                  </span>
+                  {/* Subtle alert notification dot on hamburger if alerts exist */}
+                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white"></span>
                 </span>
                 <span className="hidden md:inline text-xs font-semibold text-slate-600 group-hover:text-[#005c55] tracking-wide uppercase">
-                  Menu
+                  {tr.menu}
                 </span>
-                {/* Subtle alert notification dot on hamburger if alerts exist */}
-                <span className="absolute top-2 left-7 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white"></span>
               </button>
 
               {/* Vertical Divider */}
-              <div className="h-6 w-px bg-slate-200 hidden sm:block"></div>
+              <div className="h-6 w-px bg-slate-200 hidden sm:block shrink-0"></div>
 
               {/* Brand Logo & Name */}
               <button
                 onClick={() => onNavigate('landing')}
-                className="flex items-center gap-2.5 text-left focus:outline-none group cursor-pointer"
+                className="flex items-center gap-2.5 text-left focus:outline-none group cursor-pointer min-w-0 shrink-0"
               >
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#005c55] to-[#0f766e] flex items-center justify-center text-white shadow-sm shadow-teal-900/10 transition-transform group-hover:scale-105">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#005c55] to-[#0f766e] flex items-center justify-center text-white shadow-sm shadow-teal-900/10 transition-transform group-hover:scale-105 shrink-0">
                   <span className="material-symbols-outlined text-[19px]">spa</span>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col min-w-0">
                   <span className="text-lg sm:text-xl font-bold tracking-tight text-[#0b1c30] group-hover:text-[#005c55] transition-colors leading-none">
                     CareSync
                   </span>
-                  <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase hidden sm:block mt-0.5">
-                    Confidential Support
+                  <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase hidden sm:block mt-0.5 truncate">
+                    {tr.tagline}
                   </span>
                 </div>
               </button>
 
               {/* Context Badge */}
               {isCounselorPortal && (
-                <div className="hidden sm:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                <div className="hidden lg:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide shrink-0">
                   <span className="material-symbols-outlined text-[14px] text-[#006398]">verified_user</span>
                   <span>Counselor</span>
                 </div>
               )}
 
               {isAdminPortal && (
-                <div className="hidden sm:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                <div className="hidden lg:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide shrink-0">
                   <span className="material-symbols-outlined text-[14px] text-[#006398]">shield_person</span>
                   <span>Admin</span>
                 </div>
               )}
 
               {isCheckinFlow && (
-                <div className="hidden sm:flex items-center gap-1 bg-[#eff4ff] px-2.5 py-1 rounded-full text-[#005c55] text-xs font-semibold">
+                <div className="hidden lg:flex items-center gap-1 bg-[#eff4ff] px-2.5 py-1 rounded-full text-[#005c55] text-xs font-semibold shrink-0">
                   <span className="material-symbols-outlined text-[14px]">lock</span>
                   <span>Privacy focused</span>
                 </div>
               )}
             </div>
 
-            {/* Center breadcrumb / current section */}
-            <div className="hidden lg:flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-50/80 px-3 py-1.5 rounded-full border border-slate-200/60">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            {/* Center breadcrumb / current section — true center via grid, independent of side widths */}
+            <div className="hidden lg:flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-50/80 px-3 py-1.5 rounded-full border border-slate-200/60 whitespace-nowrap">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
               <span>Active View:</span>
               <span className="font-semibold text-slate-800">{pageTitles[currentPage] || 'Overview'}</span>
             </div>
 
             {/* Right Action: Settings/Profile */}
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="flex items-center justify-end gap-2 sm:gap-3 min-w-0">
               {/* Context Profile / Settings button */}
               {isCounselorPortal ? (
                 <button
@@ -250,9 +255,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                   </button>
                   <button
                     onClick={() => onNavigate('login')}
-                    className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:text-[#005c55] hover:border-teal-300 hover:bg-teal-50/50 text-xs font-semibold transition-all cursor-pointer"
+                    className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:text-[#005c55] hover:border-teal-300 hover:bg-teal-50/50 text-xs font-semibold transition-all cursor-pointer shrink-0"
                   >
-                    Sign In
+                    {tr.signIn}
                   </button>
                 </div>
               )}

@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageId, CheckInReflection, UserRole } from './types';
+import { LanguageCode } from './lib/translations';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
@@ -39,6 +40,27 @@ export default function App() {
   const [counselorOpen, setCounselorOpen] = useState(false);
   const [reflectionModalItem, setReflectionModalItem] = useState<CheckInReflection | null>(null);
 
+  // Appearance & accessibility preferences (in-memory only, resets on reload —
+  // consistent with the rest of the app's "nothing persists" design).
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [nightContrast, setNightContrast] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
+  const [compactMode, setCompactMode] = useState(false);
+  const [language, setLanguage] = useState<LanguageCode>('en');
+
+  // Font size genuinely scales the whole app, since Tailwind's text utilities are rem-based.
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${fontSize}px`;
+    return () => {
+      document.documentElement.style.fontSize = '';
+    };
+  }, [fontSize]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -49,12 +71,24 @@ export default function App() {
     handleNavigate('case-detail');
   };
 
+  // Dark/Night mode use a CSS filter (invert+hue-rotate) applied to the whole app root —
+  // a real, working effect without needing to retheme every component individually.
+  const filters: string[] = [];
+  if (theme === 'dark') filters.push('invert(1) hue-rotate(180deg)');
+  if (nightContrast) filters.push('brightness(0.88) contrast(1.15)');
+  if (highContrast) filters.push('contrast(1.25)');
+  const rootStyle = filters.length ? { filter: filters.join(' ') } : undefined;
+  const rootClassName = `min-h-screen flex flex-col bg-[#f8f9ff] text-[#0b1c30] ${compactMode ? 'compact' : ''} ${
+    theme === 'dark' || nightContrast ? 'theme-inverted' : ''
+  }`;
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9ff] text-[#0b1c30]">
+    <div className={rootClassName} style={rootStyle}>
       {/* Navigation Header */}
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
+        language={language}
       />
 
       {/* Main Content Area (padded for fixed header) */}
@@ -66,6 +100,7 @@ export default function App() {
             onNavigate={handleNavigate}
             onOpenGrounding={() => setGroundingOpen(true)}
             onOpenReflection={(item) => setReflectionModalItem(item)}
+            language={language}
           />
         )}
 
@@ -125,6 +160,18 @@ export default function App() {
         {currentPage === 'settings' && (
           <SettingsPage
             onNavigate={handleNavigate}
+            theme={theme}
+            setTheme={setTheme}
+            nightContrast={nightContrast}
+            setNightContrast={setNightContrast}
+            highContrast={highContrast}
+            setHighContrast={setHighContrast}
+            fontSize={fontSize}
+            setFontSize={setFontSize}
+            compactMode={compactMode}
+            setCompactMode={setCompactMode}
+            language={language}
+            setLanguage={setLanguage}
           />
         )}
 
@@ -145,7 +192,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} language={language} />
 
       {/* Interactive Modals */}
       <GroundingModal

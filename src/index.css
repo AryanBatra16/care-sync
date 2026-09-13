@@ -112,3 +112,25 @@ body {
 .animate-gentle-float {
   animation: gentle-float 6s ease-in-out infinite;
 }
+
+/* Dark / Night mode: applied as a CSS filter on the app root (see App.tsx). Photos and
+   emoji get inverted along with everything else; this rule cancels the inversion for
+   real <img>/<video> elements so photos still look correct. Emoji (rendered as text
+   glyphs, not images) can't be selectively excluded — a known tradeoff of this approach. */
+.theme-inverted img,
+.theme-inverted video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Compact Mode: tightens spacing app-wide without touching every component, by
+   targeting the common padding/gap/margin utility classes already in use. */
+.compact [class*="p-8"] { padding: 1.25rem !important; }
+.compact [class*="p-7"] { padding: 1.1rem !important; }
+.compact [class*="p-6"] { padding: 1rem !important; }
+.compact [class*="p-5"] { padding: 0.85rem !important; }
+.compact [class*="py-8"] { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
+.compact [class*="py-6"] { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+.compact [class*="gap-8"] { gap: 1.25rem !important; }
+.compact [class*="gap-6"] { gap: 1rem !important; }
+.compact [class*="space-y-6"] > * + * { margin-top: 1rem !important; }
+.compact [class*="space-y-8"] > * + * { margin-top: 1.25rem !important; }

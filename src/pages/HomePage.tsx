@@ -16,12 +16,13 @@ import {
 } from 'lucide-react';
 import { PageId, CheckInReflection, MoodType } from '../types';
 import { MOCK_REFLECTIONS } from '../data/mockData';
-import { BackgroundBlobs } from '../components/BackgroundBlobs';
+import { LanguageCode, t } from '../lib/translations';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
   onOpenGrounding: () => void;
   onOpenReflection: (reflection: CheckInReflection) => void;
+  language: LanguageCode;
 }
 
 const MOOD_VALUE: Record<MoodType, number> = {
@@ -48,8 +49,9 @@ const QUICK_MOODS: { type: MoodType; emoji: string; tint: string }[] = [
   { type: 'Struggling', emoji: '😔', tint: 'bg-rose-50 hover:border-rose-400' },
 ];
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding, onOpenReflection }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding, onOpenReflection, language }) => {
   const [ackMood, setAckMood] = useState<MoodType | null>(null);
+  const tr = t(language);
 
   const latestReflection = MOCK_REFLECTIONS[0];
   const trend = [...MOCK_REFLECTIONS].reverse().map((r) => ({
@@ -102,17 +104,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
   };
 
   return (
-    <div className="relative">
-      <BackgroundBlobs />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 space-y-6">
+    <div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 space-y-6">
         {/* Greeting Header */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>CareSync • Your Wellness Space</span>
+            <span>{tr.eyebrow}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Welcome back 🌿</h1>
-          <p className="text-slate-600 text-sm mt-1">Here's a gentle look at your wellness today.</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{tr.greeting} 🌿</h1>
+          <p className="text-slate-600 text-sm mt-1">{tr.subtitle}</p>
         </motion.div>
 
         {/* Stat Cards */}
@@ -126,7 +127,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 }}
                 whileHover={{ y: -4 }}
-                className="glass rounded-3xl p-5 shadow-soft hover:shadow-glow transition-shadow"
+                className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow"
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${s.tint}`}>
                   <Icon className={`h-5 w-5 ${s.iconColor}`} />
@@ -152,7 +153,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.24 + i * 0.06 }}
                 whileHover={{ y: -3 }}
-                className="glass rounded-3xl p-5 shadow-soft hover:shadow-glow transition-shadow cursor-pointer flex items-center gap-4 text-left"
+                className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4 text-left"
               >
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${q.tint}`}>
                   <Icon className={`h-5 w-5 ${q.iconColor}`} />
@@ -172,7 +173,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="lg:col-span-2 glass rounded-3xl p-6 shadow-soft"
+            className="lg:col-span-2 bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs"
           >
             <div className="flex items-center justify-between mb-4">
               <div>
@@ -207,9 +208,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="glass rounded-3xl p-6 shadow-soft flex flex-col relative overflow-hidden"
+            className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col relative overflow-hidden"
           >
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-teal-400/20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-teal-400/15 rounded-full blur-2xl pointer-events-none" />
             <div className="relative flex items-center gap-2 mb-3">
               <Sparkles className="h-4 w-4 text-[#005c55]" />
               <h3 className="font-bold text-sm text-slate-900">Today's Affirmation</h3>
@@ -222,7 +223,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass rounded-3xl p-6 shadow-soft flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4"
         >
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-2xl shrink-0">
@@ -235,7 +236,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
           </div>
           <button
             onClick={() => onOpenReflection(latestReflection)}
-            className="shrink-0 px-4 py-2 rounded-xl bg-white/80 hover:bg-white text-[#0b1c30] border border-white/60 text-xs font-bold transition-colors cursor-pointer"
+            className="shrink-0 px-4 py-2 rounded-xl bg-[#eff4ff] hover:bg-[#e5eeff] text-[#0b1c30] text-xs font-bold transition-colors cursor-pointer"
           >
             View Full Entry
           </button>
@@ -245,7 +246,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass rounded-3xl p-6 shadow-soft"
+          className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs"
         >
           <div className="mb-4">
             <h3 className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
