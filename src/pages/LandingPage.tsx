@@ -34,22 +34,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00d166]" />
             </span>
             <span className="text-xs font-mono font-semibold tracking-wider text-[#0b1c30] uppercase">
-              NEXT-GEN CRISIS RESILIENCE • PRIVACY FOCUSED
+              A calmer path, one check-in at a time
             </span>
           </div>
 
           {/* Monumental Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-[#0b1c30] tracking-tight leading-[1.08] mb-5">
-            Autonomous Safety &amp; Support for the{' '}
+            Your gentle companion for{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005c55] via-[#00d166] to-[#006398]">
-              Modern Survivor.
+              safety and healing.
             </span>
           </h1>
 
           {/* Subtext */}
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal mb-8">
-            CareSync dynamically isolates survivor identities, conducts trauma-informed conversational triage,
-            and routes urgent crisis thresholds to counselors while keeping privacy and confidentiality at the center.
+            CareSync listens without judgment, helps you feel grounded in the moment, and connects you with a caring
+            counselor whenever you're ready — all while keeping your privacy at the center.
           </p>
 
           {/* Primary CTA Cluster */}
@@ -77,52 +77,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <span>Sign In</span>
             </button>
           </div>
-
-          {/* Micro-metrics Ticker Cards */}
-          <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-8">
-            <div className="p-4 rounded-xl bg-white/90 backdrop-blur-md shadow-md border border-slate-100 flex flex-col justify-between">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
-                <span>TRIAGE ACCELERATION</span>
-                <span className="material-symbols-outlined text-[#005c55] text-base">trending_up</span>
-              </div>
-              <div className="text-2xl font-headline font-bold text-[#0b1c30] tracking-tight">
-                &lt; 90s<span className="text-sm font-normal text-slate-400"> avg</span>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-white/90 backdrop-blur-md shadow-md border border-slate-100 flex flex-col justify-between">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
-                <span>ISOLATION PARITY</span>
-                <span className="material-symbols-outlined text-[#006398] text-base">shield</span>
-              </div>
-              <div className="text-2xl font-headline font-bold text-[#0b1c30] tracking-tight">100%</div>
-            </div>
-          </div>
-
-          {/* Social Proof & Compliance Certifications */}
-          <div className="flex flex-col items-center space-y-2.5">
-            <div className="text-xs font-mono uppercase tracking-widest text-slate-400">
-              Trusted across 140+ licensed clinical triage networks
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-5 text-slate-600 font-headline font-semibold text-xs tracking-wider">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#00d166]" />
-                PRIVACY FOCUSED
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#006398]" />
-                TRAUMA-INFORMED PROTOCOL
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#005c55]" />
-                HIPAA COMPLIANT
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-slate-400" />
-                ISO 27001
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -141,8 +95,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <p className="text-slate-600 max-w-md text-sm sm:text-base leading-relaxed">
-              Every conversational exchange is computed client-side. Urgent distress score surges route directly to
-              licensed trauma counselors before panic overwhelms your nervous system.
+              Every conversational exchange in this prototype runs entirely in your browser — nothing is sent to a
+              server, and no real counselor is contacted. It's a working preview of how that routing could work in a
+              full deployment.
             </p>
           </div>
 
@@ -158,40 +113,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   Triage Escalation
                 </div>
                 <div className="text-4xl font-headline font-bold text-[#0b1c30] mb-3 tracking-tight">
-                  92% Faster
+                  No Hold Queue
                 </div>
-                <div className="text-base font-semibold text-[#0b1c30] mb-2">Crisis Queue De-escalation</div>
+                <div className="text-base font-semibold text-[#0b1c30] mb-2">Respond first, route second</div>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Avoid 45-minute traditional hotline hold queues. AI companion de-escalates panic immediately while
-                  relaying clinical alerts to on-duty counselors.
+                  This prototype's guided companion responds immediately with grounding prompts — no hold music, no
+                  waiting on the line. It's a scripted demo and doesn't contact a real counselor or hotline.
                 </p>
-              </div>
-
-              {/* Inline Sparkline Graphic (SVG) */}
-              <div className="mt-8 pt-6 border-t border-slate-100">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                  <span>Standard Hotline (45m)</span>
-                  <span className="text-[#005c55] font-semibold">CareSync (&lt;90s)</span>
-                </div>
-                <svg className="w-full h-14 overflow-visible" fill="none" viewBox="0 0 280 60">
-                  {/* Background reference line */}
-                  <path
-                    className="text-slate-300"
-                    d="M0,50 Q40,48 70,30 T140,10 T210,45 T280,20"
-                    stroke="currentColor"
-                    strokeDasharray="3 3"
-                    strokeWidth="2"
-                  />
-                  {/* Optimized line */}
-                  <path
-                    className="text-[#00d166]"
-                    d="M0,50 Q40,48 70,40 T140,25 T210,30 T280,32"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth="3"
-                  />
-                  <circle className="fill-[#005c55]" cx="140" cy="25" r="4" />
-                </svg>
               </div>
             </div>
 
@@ -263,19 +191,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </p>
               </div>
 
-              {/* Hardware / Security Status Bar */}
-              <div className="mt-8 pt-6 flex flex-col space-y-2 border-t border-slate-100">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-slate-400">Security Ring: E2EE</span>
-                  <span className="text-[#005c55] font-bold">SHIELD ARMED</span>
-                </div>
-                <div className="grid grid-cols-5 gap-1.5">
-                  <div className="h-2 rounded-full bg-[#00d166]" />
-                  <div className="h-2 rounded-full bg-[#00d166]" />
-                  <div className="h-2 rounded-full bg-[#00d166]" />
-                  <div className="h-2 rounded-full bg-[#00d166]" />
-                  <div className="h-2 rounded-full bg-emerald-400" />
-                </div>
+              {/* Architecture Note */}
+              <div className="mt-8 pt-6 flex items-center justify-between text-xs font-mono border-t border-slate-100">
+                <span className="text-slate-400">No server round-trip</span>
+                <span className="text-[#005c55] font-bold">RUNS IN-BROWSER</span>
               </div>
             </div>
           </div>
@@ -292,8 +211,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   See How Triage Works
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  CareSync instantly balances survivor privacy with rapid counselor escalation when acute distress
-                  signals are detected.
+                  A preview of how CareSync could balance survivor privacy with counselor escalation when acute
+                  distress signals are detected. No real counselor is contacted in this demo.
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button
@@ -391,14 +310,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
             </div>
-            <div className="mt-8 pt-4 bg-[#eff4ff] p-3.5 rounded-xl">
-              <div className="flex items-center justify-between text-xs font-mono mb-1">
-                <span className="text-[#0b1c30]">Distress Attenuation</span>
-                <span className="text-[#005c55] font-bold">-64% Heart Rate</span>
-              </div>
-              <div className="w-full bg-[#dce9ff] rounded-full h-1.5">
-                <div className="bg-[#005c55] h-1.5 rounded-full w-4/5" />
-              </div>
+            <div className="mt-8 pt-4 bg-[#eff4ff] p-3.5 rounded-xl text-xs text-slate-600 leading-relaxed">
+              Guided prompts only — this prototype doesn't connect to any wearable or heart-rate sensor.
             </div>
           </div>
 
@@ -413,25 +326,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </div>
               <h4 className="text-xl font-headline font-bold text-[#0b1c30] mb-2">Counselor Triage Mesh</h4>
               <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                De-identified psychological trends and rapid escalation feeds for licensed crisis response advocates.
+                A mock counselor dashboard demonstrating de-identified case review and escalation triage — this demo
+                is not connected to any real crisis line or licensed provider.
               </p>
               <div className="space-y-2">
-                <div className="text-xs font-mono text-slate-500">SUPPORTED NETWORKS:</div>
+                <div className="text-xs font-mono text-slate-500">RELATED EXTERNAL RESOURCE:</div>
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="px-2 py-1 rounded-md text-xs font-medium bg-white text-[#0b1c30]">LCSW Triage</span>
-                  <span className="px-2 py-1 rounded-md text-xs font-medium bg-white text-[#0b1c30]">988 Lifeline</span>
-                  <span className="px-2 py-1 rounded-md text-xs font-medium bg-white text-[#0b1c30]">Crisis Text</span>
+                  <a
+                    href="tel:988"
+                    className="px-2 py-1 rounded-md text-xs font-medium bg-white text-[#0b1c30] hover:bg-slate-50"
+                  >
+                    Call 988 Lifeline
+                  </a>
                 </div>
               </div>
             </div>
-            <div className="mt-8 pt-4 bg-[#eff4ff] p-3.5 rounded-xl">
-              <div className="flex items-center justify-between text-xs font-mono mb-1">
-                <span className="text-[#0b1c30]">Alert Latency</span>
-                <span className="text-[#006398] font-bold">&lt; 45s SLA</span>
-              </div>
-              <div className="w-full bg-[#dce9ff] rounded-full h-1.5">
-                <div className="bg-[#006398] h-1.5 rounded-full w-5/6" />
-              </div>
+            <div className="mt-8 pt-4 bg-[#eff4ff] p-3.5 rounded-xl text-xs text-slate-600 leading-relaxed">
+              Demo data only — no live counselors are notified in this prototype.
             </div>
           </div>
 
@@ -528,10 +439,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 No Persistent History
               </span>
               <span className="px-4 py-2 rounded-full bg-[#eff4ff] border border-slate-200/70 text-xs font-mono font-semibold text-[#0b1c30]">
-                HIPAA Compliant
+                No Third-Party Trackers
               </span>
               <span className="px-4 py-2 rounded-full bg-[#eff4ff] border border-slate-200/70 text-xs font-mono font-semibold text-[#0b1c30]">
-                ISO 27001
+                Demo Data Only
               </span>
             </div>
           </div>
@@ -634,8 +545,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-[#005c55] text-lg mt-0.5">check_circle</span>
                   <p className="text-slate-700">
-                    <strong className="text-[#0b1c30]">Automated Clinical Relay:</strong> Severe distress thresholds
-                    instantly ring licensed counselors with anonymized case summaries.
+                    <strong className="text-[#0b1c30]">Built for Transparency:</strong> Every score and case shown in
+                    this prototype is synthetic demo data — no real counselor is contacted.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
@@ -648,43 +559,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </div>
               <div className="pt-4 border-t border-slate-100">
                 <div className="p-4 rounded-xl bg-teal-50 text-xs font-mono text-teal-900 flex items-center justify-between">
-                  <span>Estimated Response Time:</span>
-                  <span className="text-[#005c55] font-headline font-bold text-lg">&lt; 90 Seconds</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Impact & Healing Index Strip */}
-          <div className="p-8 sm:p-10 rounded-2xl bg-white shadow-md border border-slate-200/60">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-5 space-y-2">
-                <span className="text-xs font-mono text-[#005c55] font-bold uppercase tracking-wider">
-                  Community Resilience Metrics
-                </span>
-                <h3 className="text-2xl font-headline font-bold text-[#0b1c30] tracking-tight">
-                  Measure the Impact of Immediate Care
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                  Real-time data across regional deployments demonstrates that early, unpressured check-ins prevent acute
-                  crisis hospitalizations.
-                </p>
-              </div>
-              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-[#eff4ff]">
-                  <div className="text-xs font-mono text-slate-400">ANNUAL SUPPORT VALUE</div>
-                  <div className="text-2xl sm:text-3xl font-headline font-bold text-[#005c55] mt-1">$1,420</div>
-                  <span className="text-[11px] text-slate-500">Subsidized survivor care</span>
-                </div>
-                <div className="p-4 rounded-xl bg-[#eff4ff]">
-                  <div className="text-xs font-mono text-slate-400">DE-ESCALATION TIME</div>
-                  <div className="text-2xl sm:text-3xl font-headline font-bold text-[#0b1c30] mt-1">4.2 min</div>
-                  <span className="text-[11px] text-slate-500">Median somatic relief</span>
-                </div>
-                <div className="p-4 rounded-xl bg-[#eff4ff]">
-                  <div className="text-xs font-mono text-slate-400">PRIVACY PARITY</div>
-                  <div className="text-2xl sm:text-3xl font-headline font-bold text-[#006398] mt-1">100%</div>
-                  <span className="text-[11px] text-slate-500">Zero data surveillance</span>
+                  <span>Status:</span>
+                  <span className="text-[#005c55] font-headline font-bold text-lg">Prototype Demo</span>
                 </div>
               </div>
             </div>
@@ -702,7 +578,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-teal-300 text-xs font-mono font-medium backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#00d166] animate-pulse" />
-              CONFIDENTIAL COMMUNITY ACCESS NOW OPEN
+              FREE PROTOTYPE — TRY IT NOW
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-headline font-bold text-white tracking-tight leading-tight">
@@ -710,8 +586,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto">
-              Check your regional district coverage instantly. Over 140 health agencies and clinical boards now subsidize
-              CareSync confidential check-ins with 100% free survivor access.
+              Explore the guided check-in or create an account to see how CareSync works — no cost, no commitment,
+              synthetic demo data throughout.
             </p>
 
             {/* Primary Access CTAs */}
@@ -738,7 +614,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   <span className="material-symbols-outlined text-sm text-[#00d166]">lock</span> Zero Data Stored
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm text-[#00d166]">schedule</span> Instant &lt;90s Response
+                  <span className="material-symbols-outlined text-sm text-[#00d166]">schedule</span> No Sign-Up Required to Try
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm text-[#00d166]">cancel</span> 100% Anonymous
