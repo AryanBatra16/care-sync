@@ -13,7 +13,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, language }
   return (
     <div className="flex flex-col w-full bg-[#f8f9ff] text-[#0b1c30] antialiased">
       {/* HERO SECTION — full-bleed 3D backdrop with centered content over it */}
-      <section className="relative w-full overflow-hidden min-h-[640px] sm:min-h-[760px] flex items-center justify-center">
+      <section className="relative w-full overflow-hidden h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] min-h-[520px] flex items-center justify-center">
         {/* Full-bleed animated 3D backdrop */}
         <div className="absolute inset-0 z-0">
           <CareSync3DCanvas />
@@ -29,7 +29,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, language }
         />
         <div className="absolute inset-x-0 bottom-0 h-32 z-[1] bg-gradient-to-b from-transparent to-[#f8f9ff] pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-28 sm:py-32 text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-8 sm:py-10 text-center flex flex-col items-center">
           {/* Micro-badge / System Status Chip */}
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#dce9ff]/70 border border-blue-200/60 shadow-xs backdrop-blur-md mb-6">
             <span className="relative flex h-2 w-2">
