@@ -217,6 +217,7 @@ const en: Dict = {
   'checkin.welcomeMsg2': 'How would you describe your overall feeling and physical space today? I am listening without judgment.',
   'checkin.botReplyDefault': 'Thank you for honoring yourself and sharing that. Your words are locked in your private vault.',
   'checkin.botReplyConcerned': 'I hear the weight you are carrying right now. Remember you are not alone, and it is okay to pause. Would you like to do a 60-second breathing exercise together?',
+  'checkin.botReplyCrisis': 'It sounds like you might be in serious pain right now, and I want you to be safe. If you are thinking about harming yourself, please call or text 988 (Suicide & Crisis Lifeline) right now, or call 911 if you are in immediate danger. You deserve support from a real person today.',
 
   // Check-in concluded
   'concluded.badge': 'Private Check-In Concluded',
@@ -530,6 +531,7 @@ const es: Dict = translate({
   'checkin.welcomeMsg2': '¿Cómo describirías tu sensación general y tu espacio físico hoy? Estoy escuchando sin juzgar.',
   'checkin.botReplyDefault': 'Gracias por honrarte y compartir eso. Tus palabras están guardadas en tu bóveda privada.',
   'checkin.botReplyConcerned': 'Escucho el peso que estás cargando ahora mismo. Recuerda que no estás solo/a, y está bien detenerte. ¿Te gustaría hacer un ejercicio de respiración de 60 segundos juntos?',
+  'checkin.botReplyCrisis': 'Parece que estás pasando por un dolor muy grande ahora mismo, y quiero que estés a salvo. Si estás pensando en hacerte daño, por favor llama o envía un mensaje de texto al 988 (Línea de Crisis y Suicidio) ahora mismo, o llama al 911 si estás en peligro inmediato. Mereces el apoyo de una persona real hoy.',
 
   'concluded.badge': 'Check-In Privado Concluido',
   'concluded.title': 'Tu Check-In ha sido Registrado de Forma Segura',
@@ -838,6 +840,7 @@ const fr: Dict = translate({
   'checkin.welcomeMsg2': 'Comment décririez-vous votre sensation générale et votre espace physique aujourd’hui ? J’écoute sans jugement.',
   'checkin.botReplyDefault': 'Merci de vous être honoré(e) et d’avoir partagé cela. Vos mots sont enfermés dans votre coffre privé.',
   'checkin.botReplyConcerned': 'J’entends le poids que vous portez en ce moment. Rappelez-vous que vous n’êtes pas seul(e), et qu’il est normal de faire une pause. Voudriez-vous faire un exercice de respiration de 60 secondes ensemble ?',
+  'checkin.botReplyCrisis': 'On dirait que vous traversez une douleur très intense en ce moment, et je veux que vous soyez en sécurité. Si vous pensez à vous faire du mal, appelez ou envoyez un texto au 988 (ligne de crise et de prévention du suicide) dès maintenant, ou appelez le 911 si vous êtes en danger immédiat. Vous méritez le soutien d’une vraie personne aujourd’hui.',
 
   'concluded.badge': 'Check-In Privé Conclu',
   'concluded.title': 'Votre Check-In a été Enregistré en Toute Sécurité',
@@ -1144,6 +1147,7 @@ const zh: Dict = translate({
   'checkin.welcomeMsg2': '您今天的整体感受和身体状态如何？我在不加评判地倾听。',
   'checkin.botReplyDefault': '感谢您尊重自己并分享这些。您的话语被安全地锁在您的私人保险库中。',
   'checkin.botReplyConcerned': '我能感受到您此刻承受的重量。请记住您并不孤单，暂停一下也没关系。您愿意一起做一个 60 秒的呼吸练习吗？',
+  'checkin.botReplyCrisis': '听起来您现在可能正承受着极大的痛苦，我希望您是安全的。如果您有伤害自己的想法，请立即拨打或发短信至 988（自杀与危机生命线），如果处于紧急危险中，请拨打 911。今天您值得获得真人的支持。',
 
   'concluded.badge': '私密签到已结束',
   'concluded.title': '您的签到已被安全记录',
@@ -1450,6 +1454,7 @@ const ar: Dict = translate({
   'checkin.welcomeMsg2': 'كيف تصف شعورك العام ومساحتك الجسدية اليوم؟ أنا أستمع دون إصدار أحكام.',
   'checkin.botReplyDefault': 'شكرًا لك على احترام نفسك ومشاركة ذلك. كلماتك محفوظة بأمان في خزنتك الخاصة.',
   'checkin.botReplyConcerned': 'أشعر بالعبء الذي تحمله الآن. تذكّر أنك لست وحدك، ولا بأس بأخذ استراحة. هل ترغب في القيام بتمرين تنفس لمدة 60 ثانية معًا؟',
+  'checkin.botReplyCrisis': 'يبدو أنك قد تمر بألم شديد الآن، وأريدك أن تكون بأمان. إذا كنت تفكر في إيذاء نفسك، يُرجى الاتصال أو إرسال رسالة نصية إلى 988 (خط الأزمات ومنع الانتحار) الآن، أو الاتصال بالرقم 911 إذا كنت في خطر مباشر. أنت تستحق دعمًا من شخص حقيقي اليوم.',
 
   'concluded.badge': 'تم إنهاء تسجيل الحضور الخاص',
   'concluded.title': 'تم تسجيل تسجيل حضورك بأمان',
@@ -1756,6 +1761,7 @@ const vi: Dict = translate({
   'checkin.welcomeMsg2': 'Bạn sẽ mô tả cảm giác tổng thể và trạng thái thể chất của mình hôm nay như thế nào? Tôi đang lắng nghe không phán xét.',
   'checkin.botReplyDefault': 'Cảm ơn bạn đã tôn trọng bản thân và chia sẻ điều đó. Lời của bạn được khóa an toàn trong kho lưu trữ riêng tư của bạn.',
   'checkin.botReplyConcerned': 'Tôi cảm nhận được gánh nặng mà bạn đang mang lúc này. Hãy nhớ rằng bạn không đơn độc, và việc dừng lại cũng không sao cả. Bạn có muốn cùng thực hiện một bài tập hít thở 60 giây không?',
+  'checkin.botReplyCrisis': 'Có vẻ như bạn đang trải qua nỗi đau rất lớn lúc này, và tôi muốn bạn được an toàn. Nếu bạn đang nghĩ đến việc tự làm hại bản thân, hãy gọi hoặc nhắn tin đến số 988 (Đường dây Khủng hoảng & Ngăn ngừa Tự tử) ngay bây giờ, hoặc gọi 911 nếu bạn đang gặp nguy hiểm tức thời. Hôm nay bạn xứng đáng nhận được sự hỗ trợ từ một người thật.',
 
   'concluded.badge': 'Đã Kết Thúc Check-In Riêng Tư',
   'concluded.title': 'Check-In Của Bạn Đã Được Ghi Lại An Toàn',

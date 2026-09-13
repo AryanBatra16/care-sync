@@ -91,7 +91,7 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
     );
   };
 
-  const sendText = (text: string) => {
+  const sendText = async (text: string) => {
     if (!text.trim()) return;
     const trimmed = text.trim();
 
@@ -108,18 +108,40 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
       })
     );
 
-    updateActiveMessages((msgs) => [...msgs, { sender: 'user', text: trimmed, time: nowLabel() }]);
+    const userMessage: ChatBubble = { sender: 'user', text: trimmed, time: nowLabel() };
+    // Snapshot the conversation-so-far (including this new message) for the API call,
+    // since the messages array in state won't reflect it until the next render.
+    const historyForApi = [...messages, userMessage].map((m) => ({
+      role: m.sender === 'user' ? ('user' as const) : ('model' as const),
+      text: m.text,
+    }));
+
+    updateActiveMessages((msgs) => [...msgs, userMessage]);
     setInputText('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let botResponse = tr('checkin.botReplyDefault');
-      if (selectedMood === 'Struggling' || selectedMood === 'Worried') {
-        botResponse = tr('checkin.botReplyConcerned');
-      }
-      setIsTyping(false);
+    const fallbackReply = () =>
+      selectedMood === 'Struggling' || selectedMood === 'Worried'
+        ? tr('checkin.botReplyConcerned')
+        : tr('checkin.botReplyDefault');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: historyForApi, mood: selectedMood, language }),
+      });
+      if (!res.ok) throw new Error('Chat request failed');
+      const data = await res.json();
+      const botResponse = typeof data.reply === 'string' && data.reply.trim() ? data.reply.trim() : fallbackReply();
       updateActiveMessages((msgs) => [...msgs, { sender: 'bot', text: botResponse, time: nowLabel() }]);
-    }, 900);
+    } catch {
+      // Companion falls back to a warm scripted reply if the API key isn't configured yet
+      // or the request fails, so the check-in never looks broken.
+      updateActiveMessages((msgs) => [...msgs, { sender: 'bot', text: fallbackReply(), time: nowLabel() }]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
