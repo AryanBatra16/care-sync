@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                 Privacy
               </button>
               <button
-                onClick={() => onNavigate('guided-check-in')}
+                onClick={() => onNavigate('home')}
                 className="hover:text-[#005c55] transition-colors cursor-pointer"
               >
                 Demo

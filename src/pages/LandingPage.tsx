@@ -64,7 +64,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </span>
             </button>
             <button
-              onClick={() => onNavigate('guided-check-in')}
+              onClick={() => onNavigate('home')}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#0b1c30] hover:bg-[#eff4ff] font-semibold text-base transition-all shadow-xs border border-slate-200/70 cursor-pointer"
             >
               <span className="material-symbols-outlined text-[#006398] text-xl">play_circle</span>
@@ -216,7 +216,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button
-                    onClick={() => onNavigate('guided-check-in')}
+                    onClick={() => onNavigate('home')}
                     className="px-4 py-2.5 rounded-lg bg-[#00d166] text-[#005324] text-xs font-mono font-bold hover:bg-emerald-300 transition-colors cursor-pointer shadow-md"
                   >
                     TRY THE LIVE DEMO
@@ -601,7 +601,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </button>
                 <button
-                  onClick={() => onNavigate('guided-check-in')}
+                  onClick={() => onNavigate('home')}
                   className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-white/10 text-white font-semibold text-sm hover:bg-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap border border-white/10 cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-base">play_circle</span>
