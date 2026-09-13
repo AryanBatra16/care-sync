@@ -1,12 +1,15 @@
 import React from 'react';
 import { PageId } from '../types';
 import { CareSync3DCanvas } from '../components/CareSync3DCanvas';
+import { LanguageCode, t } from '../lib/translations';
 
 interface LandingPageProps {
   onNavigate: (page: PageId) => void;
+  language: LanguageCode;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate, language }) => {
+  const tr = t(language);
   return (
     <div className="flex flex-col w-full bg-[#f8f9ff] text-[#0b1c30] antialiased">
       {/* HERO SECTION — full-bleed 3D backdrop with centered content over it */}
@@ -34,22 +37,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00d166]" />
             </span>
             <span className="text-xs font-mono font-semibold tracking-wider text-[#0b1c30] uppercase">
-              A calmer path, one check-in at a time
+              {tr('landing.badge')}
             </span>
           </div>
 
           {/* Monumental Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-bold text-[#0b1c30] tracking-tight leading-[1.08] mb-5">
-            Your gentle companion for{' '}
+            {tr('landing.headline1')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005c55] via-[#00d166] to-[#006398]">
-              safety and healing.
+              {tr('landing.headline2')}
             </span>
           </h1>
 
           {/* Subtext */}
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal mb-8">
-            CareSync listens without judgment, helps you feel grounded in the moment, and connects you with a caring
-            counselor whenever you're ready — all while keeping your privacy at the center.
+            {tr('landing.subtext')}
           </p>
 
           {/* Primary CTA Cluster */}
@@ -58,7 +60,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('register')}
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#005c55] to-[#006398] text-white font-semibold text-base shadow-lg shadow-teal-900/20 hover:shadow-xl transition-all duration-200 group cursor-pointer"
             >
-              <span>Get Started Free</span>
+              <span>{tr('landing.getStarted')}</span>
               <span className="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">
                 arrow_forward
               </span>
@@ -68,13 +70,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#0b1c30] hover:bg-[#eff4ff] font-semibold text-base transition-all shadow-xs border border-slate-200/70 cursor-pointer"
             >
               <span className="material-symbols-outlined text-[#006398] text-xl">play_circle</span>
-              <span>Try Demo</span>
+              <span>{tr('landing.tryDemo')}</span>
             </button>
             <button
               onClick={() => onNavigate('login')}
               className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-[#0b1c30] hover:text-[#005c55] font-semibold text-base transition-all cursor-pointer"
             >
-              <span>Sign In</span>
+              <span>{tr('common.signIn')}</span>
             </button>
           </div>
         </div>
@@ -88,16 +90,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="max-w-xl">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#005c55] font-semibold mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#005c55]" />
-                Crisis Telemetry Engine
+                {tr('landing.featuresEyebrow')}
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-headline font-bold text-[#0b1c30] tracking-tight">
-                Real-time triage, zero surveillance.
+                {tr('landing.featuresTitle')}
               </h2>
             </div>
             <p className="text-slate-600 max-w-md text-sm sm:text-base leading-relaxed">
-              Every conversational exchange in this prototype runs entirely in your browser — nothing is sent to a
-              server, and no real counselor is contacted. It's a working preview of how that routing could work in a
-              full deployment.
+              {tr('landing.featuresSubtext')}
             </p>
           </div>
 
@@ -424,12 +424,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <span className="material-symbols-outlined text-3xl">shield</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-headline font-bold text-[#0b1c30] tracking-tight mb-4">
-              Your story stays <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005c55] to-[#006398]">yours.</span>
+              {tr('landing.privacyTitle1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005c55] to-[#006398]">{tr('landing.privacyTitle2')}</span>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
-              CareSync is built privacy-first: conversations are handled client-side, nothing is retained beyond the
-              active session, and counselor visibility only ever shows de-identified summaries. This prototype uses
-              synthetic demo data throughout.
+              {tr('landing.privacyBody')}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <span className="px-4 py-2 rounded-full bg-[#eff4ff] border border-slate-200/70 text-xs font-mono font-semibold text-[#0b1c30]">
@@ -578,16 +576,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-teal-300 text-xs font-mono font-medium backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#00d166] animate-pulse" />
-              FREE PROTOTYPE — TRY IT NOW
+              {tr('landing.ctaEyebrow')}
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-headline font-bold text-white tracking-tight leading-tight">
-              Ready to experience trauma-informed support on your own terms?
+              {tr('landing.ctaTitle')}
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto">
-              Explore the guided check-in or create an account to see how CareSync works — no cost, no commitment,
-              synthetic demo data throughout.
+              {tr('landing.ctaBody')}
             </p>
 
             {/* Primary Access CTAs */}
@@ -597,7 +594,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('register')}
                   className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#005c55] text-white font-semibold text-sm hover:bg-[#00d166] hover:text-[#005324] transition-all flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-teal-900/30 cursor-pointer"
                 >
-                  <span>Sign Up Free</span>
+                  <span>{tr('landing.signUpFree')}</span>
                   <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </button>
                 <button
@@ -605,7 +602,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-white/10 text-white font-semibold text-sm hover:bg-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap border border-white/10 cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-base">play_circle</span>
-                  <span>Try the Demo</span>
+                  <span>{tr('landing.tryTheDemo')}</span>
                 </button>
               </div>
 
