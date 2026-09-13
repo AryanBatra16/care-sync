@@ -17,6 +17,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { PageId, MoodType } from '../types';
+import { Emoji } from '../components/Emoji';
 
 interface GuidedCheckInPageProps {
   onNavigate: (page: PageId) => void;
@@ -345,7 +346,7 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                         : 'border-slate-200 hover:bg-slate-50 text-slate-700'
                     }`}
                   >
-                    <span className="text-xl sm:text-2xl mb-1">{m.emoji}</span>
+                    <span className="text-xl sm:text-2xl mb-1"><Emoji>{m.emoji}</Emoji></span>
                     <span className="text-[11px] sm:text-xs">{m.label}</span>
                   </button>
                 ))}

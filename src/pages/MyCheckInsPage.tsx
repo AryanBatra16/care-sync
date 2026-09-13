@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Flame, PlusCircle, Eye, Trash2, Sparkles, Lock } from 'lucide-react';
 import { PageId, CheckInReflection, MoodType } from '../types';
 import { MOCK_REFLECTIONS, ASSETS } from '../data/mockData';
+import { Emoji } from '../components/Emoji';
 
 interface MyCheckInsPageProps {
   onNavigate: (page: PageId) => void;
@@ -128,7 +129,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
                   selectedMood === m.type ? `${m.tint} ${m.ring} scale-105 shadow-xs` : 'border-transparent bg-slate-50 hover:bg-slate-100'
                 }`}
               >
-                <span className="text-2xl sm:text-3xl">{m.emoji}</span>
+                <span className="text-2xl sm:text-3xl"><Emoji>{m.emoji}</Emoji></span>
                 <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600">{m.type}</span>
               </button>
             ))}
@@ -237,7 +238,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-2xl shrink-0 shadow-2xs">
-                      {item.emoji}
+                      <Emoji>{item.emoji}</Emoji>
                     </div>
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">

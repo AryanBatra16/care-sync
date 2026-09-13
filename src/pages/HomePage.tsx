@@ -17,6 +17,7 @@ import {
 import { PageId, CheckInReflection, MoodType } from '../types';
 import { MOCK_REFLECTIONS } from '../data/mockData';
 import { LanguageCode, t } from '../lib/translations';
+import { Emoji } from '../components/Emoji';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -112,7 +113,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>{tr.eyebrow}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{tr.greeting} 🌿</h1>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{tr.greeting} <Emoji>🌿</Emoji></h1>
           <p className="text-slate-600 text-sm mt-1">{tr.subtitle}</p>
         </motion.div>
 
@@ -133,7 +134,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                   <Icon className={`h-5 w-5 ${s.iconColor}`} />
                 </div>
                 <div className="text-2xl font-headline font-bold text-slate-900">
-                  {s.value} <span className="text-sm font-normal text-slate-400">{s.unit}</span>
+                  {s.label === "Today's Mood" ? <Emoji>{s.value}</Emoji> : s.value}{' '}
+                  <span className="text-sm font-normal text-slate-400">{s.unit}</span>
                 </div>
                 <div className="text-xs text-slate-500 mt-1">{s.label}</div>
               </motion.div>
@@ -227,7 +229,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
         >
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-2xl shrink-0">
-              {latestReflection.emoji}
+              <Emoji>{latestReflection.emoji}</Emoji>
             </div>
             <div>
               <h3 className="font-bold text-slate-900 text-sm">Latest Reflection · {latestReflection.date}</h3>
@@ -264,7 +266,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                 onClick={() => handleQuickMood(m.type)}
                 className={`flex flex-col items-center justify-center gap-1.5 py-3 sm:py-4 px-2 rounded-2xl border-2 border-transparent transition-all cursor-pointer ${m.tint}`}
               >
-                <span className="text-2xl sm:text-3xl">{m.emoji}</span>
+                <span className="text-2xl sm:text-3xl"><Emoji>{m.emoji}</Emoji></span>
                 <span className="text-[11px] font-semibold text-slate-600">{m.type}</span>
               </motion.button>
             ))}

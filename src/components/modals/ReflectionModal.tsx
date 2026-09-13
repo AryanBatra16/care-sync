@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckInReflection } from '../../types';
+import { Emoji } from '../Emoji';
 
 interface ReflectionModalProps {
   reflection: CheckInReflection | null;
@@ -34,7 +35,7 @@ export const ReflectionModal: React.FC<ReflectionModalProps> = ({ reflection, on
         </div>
 
         <div className="bg-[#eff4ff] p-4 rounded-xl flex items-center gap-4">
-          <span className="text-3xl">{reflection.emoji}</span>
+          <span className="text-3xl"><Emoji>{reflection.emoji}</Emoji></span>
           <div>
             <p className="text-sm font-bold text-[#0b1c30]">{reflection.date}</p>
             <p className="text-xs text-[#005c55] font-semibold">{reflection.mood} • {reflection.time}</p>

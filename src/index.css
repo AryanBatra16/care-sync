@@ -71,14 +71,26 @@ body {
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* Dark / Night mode: applied as a CSS filter on the app root (see App.tsx). Photos and
-   emoji get inverted along with everything else; this rule cancels the inversion for
-   real <img>/<video> elements so photos still look correct. Emoji (rendered as text
-   glyphs, not images) can't be selectively excluded — a known tradeoff of this approach. */
+/* Dark / Night mode: applied as a CSS filter on the app root (see App.tsx). Everything
+   in the subtree gets inverted, including photos and emoji. These rules apply the same
+   invert+hue-rotate a second time to specific elements, which cancels the parent's
+   filter for just that element (two inversions = back to normal) — used for real
+   <img>/<video> elements and for emoji wrapped in the <Emoji> component, so both keep
+   their real colors instead of looking inverted. */
 .theme-inverted img,
-.theme-inverted video {
+.theme-inverted video,
+.theme-inverted .emoji-fix {
   filter: invert(1) hue-rotate(180deg);
 }
+
+/* High Contrast Mode: darkens the specific muted/light-gray text colors used across the
+   app. Deliberately NOT a contrast() filter — that pushes already-light colors even
+   lighter (further from a white background), which fades subtle labels out instead of
+   making them stand out. Targeting the actual utility classes fixes that for real. */
+.high-contrast [class*="text-slate-300"] { color: #475569 !important; }
+.high-contrast [class*="text-slate-400"] { color: #334155 !important; }
+.high-contrast [class*="text-slate-500"] { color: #1e293b !important; }
+.high-contrast [class*="text-slate-600"] { color: #0f172a !important; }
 
 /* Compact Mode: tightens spacing app-wide without touching every component, by
    targeting the common padding/gap/margin utility classes already in use. */

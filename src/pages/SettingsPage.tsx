@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
 import { LANGUAGES, LanguageCode } from '../lib/translations';
+import { Emoji } from '../components/Emoji';
 
 interface SettingsPageProps {
   onNavigate: (page: PageId) => void;
@@ -202,7 +203,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                       theme === 'light' ? 'border-[#005c55] bg-teal-50/60' : 'border-slate-200 hover:bg-slate-50'
                     }`}
                   >
-                    <span className="text-2xl">☀️</span>
+                    <span className="text-2xl"><Emoji>☀️</Emoji></span>
                     <span className="text-xs font-bold text-slate-800">Light</span>
                   </button>
                   <button
@@ -211,7 +212,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                       theme === 'dark' ? 'border-[#005c55] bg-teal-50/60' : 'border-slate-200 hover:bg-slate-50'
                     }`}
                   >
-                    <span className="text-2xl">🌙</span>
+                    <span className="text-2xl"><Emoji>🌙</Emoji></span>
                     <span className="text-xs font-bold text-slate-800">Dark</span>
                   </button>
                 </div>
@@ -264,7 +265,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-4">
                 <div>
                   <p className="font-bold text-slate-800 text-xs">Night Contrast</p>
-                  <p className="text-slate-500 mt-0.5 text-xs">An extra-dim, higher-contrast look for late-night use. Stacks with Dark theme.</p>
+                  <p className="text-slate-500 mt-0.5 text-xs">An extra-dim look for late-night use. Stacks with Dark theme.</p>
                 </div>
                 <Toggle checked={nightContrast} onChange={() => setNightContrast(!nightContrast)} />
               </div>

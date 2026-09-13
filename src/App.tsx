@@ -73,14 +73,17 @@ export default function App() {
 
   // Dark/Night mode use a CSS filter (invert+hue-rotate) applied to the whole app root —
   // a real, working effect without needing to retheme every component individually.
+  // High Contrast deliberately does NOT use a contrast() filter: that pushes light-gray
+  // text even lighter (further from a white background), making subtle labels fade out
+  // instead of standing out. It's handled instead by index.css's .high-contrast rules,
+  // which directly darken the specific muted text colors used across the app.
   const filters: string[] = [];
   if (theme === 'dark') filters.push('invert(1) hue-rotate(180deg)');
-  if (nightContrast) filters.push('brightness(0.88) contrast(1.15)');
-  if (highContrast) filters.push('contrast(1.25)');
+  if (nightContrast) filters.push('brightness(0.85)');
   const rootStyle = filters.length ? { filter: filters.join(' ') } : undefined;
   const rootClassName = `min-h-screen flex flex-col bg-[#f8f9ff] text-[#0b1c30] ${compactMode ? 'compact' : ''} ${
-    theme === 'dark' || nightContrast ? 'theme-inverted' : ''
-  }`;
+    highContrast ? 'high-contrast' : ''
+  } ${theme === 'dark' || nightContrast ? 'theme-inverted' : ''}`;
 
   return (
     <div className={rootClassName} style={rootStyle}>
