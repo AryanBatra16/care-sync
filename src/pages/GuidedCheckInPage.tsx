@@ -15,6 +15,7 @@ import {
   Plus,
   Trash2,
   MessageSquare,
+  Pencil,
 } from 'lucide-react';
 import { PageId, MoodType } from '../types';
 import { Emoji } from '../components/Emoji';
@@ -38,6 +39,7 @@ interface ChatSession {
   title: string;
   createdAt: Date;
   messages: ChatBubble[];
+  titleManuallySet?: boolean;
 }
 
 const nowLabel = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -69,6 +71,8 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
   const [inputText, setInputText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [editingSessionId, setEditingSessionId] = useState<string | null>(null);
+  const [editingValue, setEditingValue] = useState('');
 
   const activeSession = sessions.find((s) => s.id === activeSessionId) ?? sessions[0];
   const messages = activeSession.messages;
@@ -91,14 +95,15 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
     if (!text.trim()) return;
     const trimmed = text.trim();
 
-    // Auto-title the session from the first user message, like a real chat history would.
+    // Auto-title the session from the first user message, like a real chat history would —
+    // unless the person has already renamed it themselves.
     setSessions((prev) =>
       prev.map((s) => {
         if (s.id !== activeSessionId) return s;
         const isFirstUserMessage = !s.messages.some((m) => m.sender === 'user');
         return {
           ...s,
-          title: isFirstUserMessage ? trimmed.slice(0, 32) + (trimmed.length > 32 ? '…' : '') : s.title,
+          title: isFirstUserMessage && !s.titleManuallySet ? trimmed.slice(0, 32) + (trimmed.length > 32 ? '…' : '') : s.title,
         };
       })
     );
@@ -156,6 +161,26 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
     });
   };
 
+  const handleStartRename = (id: string, currentTitle: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingSessionId(id);
+    setEditingValue(currentTitle);
+  };
+
+  const handleRenameSubmit = (id: string) => {
+    const trimmed = editingValue.trim();
+    if (trimmed) {
+      setSessions((prev) =>
+        prev.map((s) => (s.id === id ? { ...s, title: trimmed, titleManuallySet: true } : s))
+      );
+    }
+    setEditingSessionId(null);
+  };
+
+  const handleRenameCancel = () => {
+    setEditingSessionId(null);
+  };
+
   const isToday = (d: Date) => d.toDateString() === new Date().toDateString();
   const todaySessions = sessions.filter((s) => isToday(s.createdAt));
   const earlierSessions = sessions.filter((s) => !isToday(s.createdAt));
@@ -203,7 +228,19 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                 <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">{tr('checkin.today')}</div>
                 <div className="space-y-1">
                   {todaySessions.map((s) => (
-                    <SessionRow key={s.id} session={s} active={s.id === activeSessionId} onSelect={() => setActiveSessionId(s.id)} onDelete={(e) => handleDeleteSession(s.id, e)} />
+                    <SessionRow
+                      key={s.id}
+                      session={s}
+                      active={s.id === activeSessionId}
+                      isEditing={editingSessionId === s.id}
+                      editingValue={editingValue}
+                      onSelect={() => setActiveSessionId(s.id)}
+                      onDelete={(e) => handleDeleteSession(s.id, e)}
+                      onStartRename={(e) => handleStartRename(s.id, s.title, e)}
+                      onEditingChange={setEditingValue}
+                      onSubmitRename={() => handleRenameSubmit(s.id)}
+                      onCancelRename={handleRenameCancel}
+                    />
                   ))}
                 </div>
               </div>
@@ -213,7 +250,19 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                 <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">{tr('checkin.earlier')}</div>
                 <div className="space-y-1">
                   {earlierSessions.map((s) => (
-                    <SessionRow key={s.id} session={s} active={s.id === activeSessionId} onSelect={() => setActiveSessionId(s.id)} onDelete={(e) => handleDeleteSession(s.id, e)} />
+                    <SessionRow
+                      key={s.id}
+                      session={s}
+                      active={s.id === activeSessionId}
+                      isEditing={editingSessionId === s.id}
+                      editingValue={editingValue}
+                      onSelect={() => setActiveSessionId(s.id)}
+                      onDelete={(e) => handleDeleteSession(s.id, e)}
+                      onStartRename={(e) => handleStartRename(s.id, s.title, e)}
+                      onEditingChange={setEditingValue}
+                      onSubmitRename={() => handleRenameSubmit(s.id)}
+                      onCancelRename={handleRenameCancel}
+                    />
                   ))}
                 </div>
               </div>
@@ -509,19 +558,69 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
 const SessionRow: React.FC<{
   session: ChatSession;
   active: boolean;
+  isEditing: boolean;
+  editingValue: string;
   onSelect: () => void;
   onDelete: (e: React.MouseEvent) => void;
-}> = ({ session, active, onSelect, onDelete }) => (
-  <button
-    onClick={onSelect}
-    className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-xl text-left text-xs transition-all cursor-pointer group ${
-      active ? 'bg-teal-50 text-teal-900 font-bold' : 'text-slate-600 hover:bg-slate-50'
-    }`}
-  >
-    <MessageSquare className={`h-3.5 w-3.5 shrink-0 ${active ? 'text-teal-700' : 'text-slate-400'}`} />
-    <span className="flex-1 min-w-0 truncate">{session.title}</span>
-    <span onClick={onDelete} className="opacity-0 group-hover:opacity-100 p-1 rounded-md hover:bg-rose-100 hover:text-rose-600 transition-opacity shrink-0">
-      <Trash2 className="h-3 w-3" />
-    </span>
-  </button>
-);
+  onStartRename: (e: React.MouseEvent) => void;
+  onEditingChange: (value: string) => void;
+  onSubmitRename: () => void;
+  onCancelRename: () => void;
+}> = ({
+  session,
+  active,
+  isEditing,
+  editingValue,
+  onSelect,
+  onDelete,
+  onStartRename,
+  onEditingChange,
+  onSubmitRename,
+  onCancelRename,
+}) => {
+  if (isEditing) {
+    return (
+      <div
+        className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-xl text-left text-xs ${
+          active ? 'bg-teal-50' : 'bg-slate-50'
+        }`}
+      >
+        <MessageSquare className={`h-3.5 w-3.5 shrink-0 ${active ? 'text-teal-700' : 'text-slate-400'}`} />
+        <input
+          autoFocus
+          value={editingValue}
+          onChange={(e) => onEditingChange(e.target.value)}
+          onBlur={onSubmitRename}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') onSubmitRename();
+            if (e.key === 'Escape') onCancelRename();
+          }}
+          onClick={(e) => e.stopPropagation()}
+          className="flex-1 min-w-0 bg-white border border-teal-300 rounded-md px-1.5 py-0.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-teal-500"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={onSelect}
+      className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-xl text-left text-xs transition-all cursor-pointer group ${
+        active ? 'bg-teal-50 text-teal-900 font-bold' : 'text-slate-600 hover:bg-slate-50'
+      }`}
+    >
+      <MessageSquare className={`h-3.5 w-3.5 shrink-0 ${active ? 'text-teal-700' : 'text-slate-400'}`} />
+      <span className="flex-1 min-w-0 truncate">{session.title}</span>
+      <span
+        onClick={onStartRename}
+        title="Rename chat"
+        className="opacity-0 group-hover:opacity-100 p-1 rounded-md hover:bg-slate-200 hover:text-slate-700 transition-opacity shrink-0"
+      >
+        <Pencil className="h-3 w-3" />
+      </span>
+      <span onClick={onDelete} title="Delete chat" className="opacity-0 group-hover:opacity-100 p-1 rounded-md hover:bg-rose-100 hover:text-rose-600 transition-opacity shrink-0">
+        <Trash2 className="h-3 w-3" />
+      </span>
+    </button>
+  );
+};
