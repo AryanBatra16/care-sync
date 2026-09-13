@@ -61,16 +61,16 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
   // Human readable title for current page breadcrumb
   const pageTitles: Record<PageId, string> = {
     'landing': 'Welcome',
-    'home': 'Dashboard',
-    'guided-check-in': 'Guided Check-In',
-    'check-in-concluded': 'Check-In Receipt',
-    'my-check-ins': 'My Check-Ins',
-    'counselor-cases': 'Counselor Cases',
-    'case-detail': 'Case Detail Review',
-    'counselor-alerts': 'Triage Alerts Feed',
-    'admin-portal': 'District Admin Portal',
-    'ethics-and-privacy': 'Ethics & Privacy',
-    'settings': 'Settings & Safety',
+    'home': tr('header.drawer.dashboard'),
+    'guided-check-in': tr('header.drawer.guidedCheckIn'),
+    'check-in-concluded': tr('header.drawer.checkInReceipt'),
+    'my-check-ins': tr('header.drawer.myCheckIns'),
+    'counselor-cases': tr('header.drawer.casesDashboard'),
+    'case-detail': tr('header.drawer.caseReview'),
+    'counselor-alerts': tr('header.drawer.triageAlerts'),
+    'admin-portal': tr('header.drawer.adminPortal'),
+    'ethics-and-privacy': tr('header.drawer.ethics'),
+    'settings': tr('header.drawer.settingsPrefs'),
     'login': 'Portal Sign In',
     'register': 'Create Account',
     'forgot-password': 'Password Recovery',
@@ -103,19 +103,19 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
               <button onClick={handleScrollToFeatures} className="hover:text-[#005c55] transition-colors cursor-pointer">
-                Features
+                {tr('header.features')}
               </button>
               <button
                 onClick={handleScrollToPrivacy}
                 className="hover:text-[#005c55] transition-colors cursor-pointer"
               >
-                Privacy
+                {tr('header.privacy')}
               </button>
               <button
                 onClick={() => onNavigate('home')}
                 className="hover:text-[#005c55] transition-colors cursor-pointer"
               >
-                Demo
+                {tr('header.demo')}
               </button>
             </nav>
 
@@ -124,13 +124,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                 onClick={() => onNavigate('login')}
                 className="text-sm font-semibold text-slate-700 hover:text-[#005c55] transition-colors cursor-pointer"
               >
-                Sign In
+                {tr('common.signIn')}
               </button>
               <button
                 onClick={() => onNavigate('register')}
                 className="inline-flex items-center px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-[#005c55] to-[#006398] text-white text-sm font-semibold shadow-md shadow-teal-900/20 hover:shadow-lg transition-all cursor-pointer"
               >
-                Sign Up
+                {tr('common.signUp')}
               </button>
             </div>
           </div>
@@ -154,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white"></span>
                 </span>
                 <span className="hidden md:inline text-xs font-semibold text-slate-600 group-hover:text-[#005c55] tracking-wide uppercase">
-                  {tr.menu}
+                  {tr('header.menu')}
                 </span>
               </button>
 
@@ -174,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                     CareSync
                   </span>
                   <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase hidden sm:block mt-0.5 truncate">
-                    {tr.tagline}
+                    {tr('header.tagline')}
                   </span>
                 </div>
               </button>
@@ -183,21 +183,21 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
               {isCounselorPortal && (
                 <div className="hidden lg:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide shrink-0">
                   <span className="material-symbols-outlined text-[14px] text-[#006398]">verified_user</span>
-                  <span>Counselor</span>
+                  <span>{tr('header.counselor')}</span>
                 </div>
               )}
 
               {isAdminPortal && (
                 <div className="hidden lg:flex items-center gap-1.5 bg-[#cce5ff] text-[#00476e] px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide shrink-0">
                   <span className="material-symbols-outlined text-[14px] text-[#006398]">shield_person</span>
-                  <span>Admin</span>
+                  <span>{tr('header.admin')}</span>
                 </div>
               )}
 
               {isCheckinFlow && (
                 <div className="hidden lg:flex items-center gap-1 bg-[#eff4ff] px-2.5 py-1 rounded-full text-[#005c55] text-xs font-semibold shrink-0">
                   <span className="material-symbols-outlined text-[14px]">lock</span>
-                  <span>Privacy focused</span>
+                  <span>{tr('header.privacyFocused')}</span>
                 </div>
               )}
             </div>
@@ -205,7 +205,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
             {/* Center breadcrumb / current section — true center via grid, independent of side widths */}
             <div className="hidden lg:flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-50/80 px-3 py-1.5 rounded-full border border-slate-200/60 whitespace-nowrap">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-              <span>Active View:</span>
+              <span>{tr('header.activeView')}</span>
               <span className="font-semibold text-slate-800">{pageTitles[currentPage] || 'Overview'}</span>
             </div>
 
@@ -257,7 +257,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                     onClick={() => onNavigate('login')}
                     className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:text-[#005c55] hover:border-teal-300 hover:bg-teal-50/50 text-xs font-semibold transition-all cursor-pointer shrink-0"
                   >
-                    {tr.signIn}
+                    {tr('common.signIn')}
                   </button>
                 </div>
               )}
@@ -295,7 +295,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                   <div className="text-base font-bold text-[#0b1c30] leading-none">CareSync</div>
                   <div className="text-[10px] text-[#005c55] font-semibold mt-0.5 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>Private &amp; confidential</span>
+                    <span>{tr('header.drawer.confidential')}</span>
                   </div>
                 </div>
               </div>
@@ -316,9 +316,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
               {/* SECTION 1: SURVIVOR & CRISIS SUPPORT */}
               <div>
                 <div className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-                  <span>Support &amp; Care</span>
+                  <span>{tr('header.drawer.supportCare')}</span>
                   <span className="text-[10px] bg-teal-50 text-teal-800 font-semibold px-2 py-0.5 rounded-full">
-                    Privacy focused
+                    {tr('header.drawer.privacyFocusedBadge')}
                   </span>
                 </div>
                 <div className="space-y-1">
@@ -339,9 +339,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       space_dashboard
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Dashboard</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.dashboard')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Your wellness overview
+                        {tr('header.drawer.dashboardDesc')}
                       </div>
                     </div>
                   </button>
@@ -364,13 +364,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="leading-snug truncate">Guided Check-In</span>
+                        <span className="leading-snug truncate">{tr('header.drawer.guidedCheckIn')}</span>
                         <span className="text-[9px] bg-teal-100 text-teal-900 font-bold px-1.5 py-0.2 rounded">
-                          Companion
+                          {tr('header.drawer.companion')}
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Private conversational triage
+                        {tr('header.drawer.guidedCheckInDesc')}
                       </div>
                     </div>
                   </button>
@@ -392,9 +392,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       menu_book
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">My Check-Ins</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.myCheckIns')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Personal check-ins
+                        {tr('header.drawer.myCheckInsDesc')}
                       </div>
                     </div>
                   </button>
@@ -416,9 +416,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       task_alt
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Check-In Receipt</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.checkInReceipt')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Session summary
+                        {tr('header.drawer.checkInReceiptDesc')}
                       </div>
                     </div>
                   </button>
@@ -428,9 +428,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
               {/* SECTION 2: COUNSELOR & CLINICAL TRIAGE */}
               <div>
                 <div className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-                  <span>Counselor Oversight</span>
+                  <span>{tr('header.drawer.counselorOversight')}</span>
                   <span className="text-[10px] bg-blue-50 text-blue-800 font-semibold px-2 py-0.5 rounded-full">
-                    Clinical
+                    {tr('header.drawer.clinical')}
                   </span>
                 </div>
                 <div className="space-y-1">
@@ -451,9 +451,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       clinical_notes
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Cases Dashboard</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.casesDashboard')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Distress scores &amp; active triage
+                        {tr('header.drawer.casesDashboardDesc')}
                       </div>
                     </div>
                   </button>
@@ -476,13 +476,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="leading-snug truncate">Triage Alerts Feed</span>
+                        <span className="leading-snug truncate">{tr('header.drawer.triageAlerts')}</span>
                         <span className="text-[10px] bg-rose-600 text-white font-bold px-1.5 py-0.2 rounded-full animate-pulse">
                           3 New
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Urgent threshold escalations
+                        {tr('header.drawer.triageAlertsDesc')}
                       </div>
                     </div>
                   </button>
@@ -504,9 +504,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       troubleshoot
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Case Review (1042)</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.caseReview')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        De-identified psychological trends
+                        {tr('header.drawer.caseReviewDesc')}
                       </div>
                     </div>
                   </button>
@@ -516,7 +516,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
               {/* SECTION 3: ADMINISTRATION & GOVERNANCE */}
               <div>
                 <div className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-                  <span>Governance &amp; Trust</span>
+                  <span>{tr('header.drawer.governanceTrust')}</span>
                 </div>
                 <div className="space-y-1">
                   {/* Admin Portal */}
@@ -536,9 +536,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       domain
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">District Admin Portal</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.adminPortal')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Regional metrics &amp; counselor audits
+                        {tr('header.drawer.adminPortalDesc')}
                       </div>
                     </div>
                   </button>
@@ -560,9 +560,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       verified_user
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Ethics &amp; Isolation</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.ethics')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Privacy and safety resources
+                        {tr('header.drawer.ethicsDesc')}
                       </div>
                     </div>
                   </button>
@@ -572,7 +572,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
               {/* SECTION 4: PREFERENCES & ACCESS */}
               <div>
                 <div className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Settings &amp; Access
+                  {tr('header.drawer.settingsAccess')}
                 </div>
                 <div className="space-y-1">
                   {/* Settings */}
@@ -592,9 +592,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       tune
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Settings &amp; Preferences</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.settingsPrefs')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Accessibility &amp; audio preferences
+                        {tr('header.drawer.settingsPrefsDesc')}
                       </div>
                     </div>
                   </button>
@@ -616,9 +616,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       login
                     </span>
                     <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">Sign In / Switch Role</div>
+                      <div className="leading-snug truncate">{tr('header.drawer.signInSwitch')}</div>
                       <div className="text-[11px] text-slate-400 font-normal truncate">
-                        Survivor, Counselor, or Admin
+                        {tr('header.drawer.signInSwitchDesc')}
                       </div>
                     </div>
                   </button>
@@ -630,13 +630,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
             <div className="p-4 border-t border-slate-100 bg-slate-50/70 shrink-0 space-y-2.5">
               {/* 24/7 Lifeline Quick Link */}
               <div className="flex items-center justify-between text-[11px] px-1 text-slate-500">
-                <span>24/7 Crisis Support:</span>
+                <span>{tr('header.drawer.crisisSupport')}</span>
                 <a
                   href="tel:988"
                   className="font-bold text-rose-700 hover:underline flex items-center gap-1"
                 >
                   <span className="material-symbols-outlined text-[13px]">phone_in_talk</span>
-                  <span>Call / Text 988</span>
+                  <span>{tr('header.drawer.callText988')}</span>
                 </a>
               </div>
             </div>

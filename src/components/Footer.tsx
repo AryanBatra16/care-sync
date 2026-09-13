@@ -17,10 +17,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, language }) => {
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-rose-600 text-[20px] shrink-0">emergency</span>
             <span className="text-xs sm:text-sm font-bold text-rose-950">
-              24/7 Crisis Lifeline: Call or Text 988 | Emergency: 911
+              {tr('footer.hotlineBanner')}
             </span>
             <span className="hidden md:inline text-xs text-rose-800">
-              — Free, confidential, immediate support 24/7.
+              {tr('footer.hotlineSub')}
             </span>
           </div>
           <div className="flex items-center gap-3 text-xs">
@@ -59,43 +59,43 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, language }) => {
               </div>
               <span className="font-bold text-slate-800 text-sm">CareSync</span>
             </button>
-            <p className="max-w-[220px]">{tr.footerTagline}</p>
+            <p className="max-w-[220px]">{tr('footer.tagline')}</p>
           </div>
 
           {/* Product column */}
           <div className="text-center sm:text-left">
-            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">Product</div>
+            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">{tr('footer.product')}</div>
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={() => onNavigate('guided-check-in')}
                 className="hover:text-teal-800 transition-colors text-left cursor-pointer"
               >
-                Guided Check-In
+                {tr('footer.guidedCheckIn')}
               </button>
               <button
                 onClick={() => onNavigate('ethics-and-privacy')}
                 className="hover:text-teal-800 transition-colors text-left cursor-pointer"
               >
-                Ethics &amp; Privacy
+                {tr('footer.ethicsPrivacy')}
               </button>
             </div>
           </div>
 
           {/* Legal / Trust column */}
           <div className="text-center sm:text-left">
-            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">Legal &amp; Trust</div>
+            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">{tr('footer.legalTrust')}</div>
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={() => onNavigate('settings')}
                 className="hover:text-teal-800 transition-colors text-left cursor-pointer"
               >
-                Safety Protocol
+                {tr('footer.safetyProtocol')}
               </button>
               <button
                 onClick={() => onNavigate('admin-portal')}
                 className="hover:text-teal-800 transition-colors text-left cursor-pointer"
               >
-                Privacy Review
+                {tr('footer.privacyReview')}
               </button>
             </div>
           </div>
@@ -104,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, language }) => {
         {/* Bottom copyright strip */}
         <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
           <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span className="font-semibold text-slate-800">CareSync Foundation © 2025</span>
+          <span className="font-semibold text-slate-800">{tr('footer.copyright')}</span>
         </div>
       </div>
     </footer>

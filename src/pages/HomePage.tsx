@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { PageId, CheckInReflection, MoodType } from '../types';
 import { MOCK_REFLECTIONS } from '../data/mockData';
-import { LanguageCode, t } from '../lib/translations';
+import { LanguageCode, t, tList } from '../lib/translations';
 import { Emoji } from '../components/Emoji';
 
 interface HomePageProps {
@@ -34,20 +34,12 @@ const MOOD_VALUE: Record<MoodType, number> = {
   Struggling: 1,
 };
 
-const AFFIRMATIONS = [
-  'You are allowed to take up space and ask for what you need.',
-  'Healing is not linear, and every small step still counts.',
-  'You survived every hard day so far. That is not nothing.',
-  'Your feelings are valid, even the ones that are hard to name.',
-  'Rest is productive when your nervous system needs it.',
-];
-
-const QUICK_MOODS: { type: MoodType; emoji: string; tint: string }[] = [
-  { type: 'Great', emoji: '😊', tint: 'bg-emerald-50 hover:border-emerald-400' },
-  { type: 'Okay', emoji: '🙂', tint: 'bg-teal-50 hover:border-teal-400' },
-  { type: 'Neutral', emoji: '😐', tint: 'bg-slate-100 hover:border-slate-400' },
-  { type: 'Worried', emoji: '😟', tint: 'bg-amber-50 hover:border-amber-400' },
-  { type: 'Struggling', emoji: '😔', tint: 'bg-rose-50 hover:border-rose-400' },
+const QUICK_MOODS: { type: MoodType; emoji: string; tint: string; key: string }[] = [
+  { type: 'Great', emoji: '😊', tint: 'bg-emerald-50 hover:border-emerald-400', key: 'checkin.moodGreat' },
+  { type: 'Okay', emoji: '🙂', tint: 'bg-teal-50 hover:border-teal-400', key: 'checkin.moodOkay' },
+  { type: 'Neutral', emoji: '😐', tint: 'bg-slate-100 hover:border-slate-400', key: 'checkin.moodNeutral' },
+  { type: 'Worried', emoji: '😟', tint: 'bg-amber-50 hover:border-amber-400', key: 'checkin.moodWorried' },
+  { type: 'Struggling', emoji: '😔', tint: 'bg-rose-50 hover:border-rose-400', key: 'checkin.moodStruggling' },
 ];
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding, onOpenReflection, language }) => {
@@ -63,35 +55,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
   const averageMood = (
     MOCK_REFLECTIONS.reduce((sum, r) => sum + MOOD_VALUE[r.mood], 0) / MOCK_REFLECTIONS.length
   ).toFixed(1);
-  const todaysAffirmation = AFFIRMATIONS[new Date().getDate() % AFFIRMATIONS.length];
+  const affirmations = tList(language, 'home.affirmations');
+  const todaysAffirmation = affirmations[new Date().getDate() % affirmations.length];
 
   const stats = [
-    { label: 'Check-In Streak', value: '4', unit: 'days', icon: Flame, tint: 'bg-teal-50', iconColor: 'text-[#005c55]' },
-    { label: 'Average Mood', value: averageMood, unit: '/ 5', icon: TrendingUp, tint: 'bg-sky-50', iconColor: 'text-[#006398]' },
-    { label: 'Reflections Logged', value: String(MOCK_REFLECTIONS.length), unit: 'entries', icon: Sparkles, tint: 'bg-emerald-50', iconColor: 'text-emerald-700' },
-    { label: "Today's Mood", value: latestReflection.emoji, unit: latestReflection.mood, icon: Smile, tint: 'bg-cyan-50', iconColor: 'text-cyan-700' },
+    { label: tr('home.streak'), value: '4', unit: tr('home.days'), icon: Flame, tint: 'bg-teal-50', iconColor: 'text-[#005c55]', isMood: false },
+    { label: tr('home.avgMood'), value: averageMood, unit: '/ 5', icon: TrendingUp, tint: 'bg-sky-50', iconColor: 'text-[#006398]', isMood: false },
+    { label: tr('home.reflectionsLogged'), value: String(MOCK_REFLECTIONS.length), unit: tr('home.entries'), icon: Sparkles, tint: 'bg-emerald-50', iconColor: 'text-emerald-700', isMood: false },
+    { label: tr('home.todaysMood'), value: latestReflection.emoji, unit: latestReflection.mood, icon: Smile, tint: 'bg-cyan-50', iconColor: 'text-cyan-700', isMood: true },
   ];
 
   const quickActions: { label: string; desc: string; icon: typeof HandHeart; tint: string; iconColor: string; onClick: () => void }[] = [
     {
-      label: 'Start Check-In',
-      desc: 'Talk with your companion',
+      label: tr('home.startCheckIn'),
+      desc: tr('home.startCheckInDesc'),
       icon: HandHeart,
       tint: 'bg-teal-50',
       iconColor: 'text-[#005c55]',
       onClick: () => onNavigate('guided-check-in'),
     },
     {
-      label: 'Ground Yourself',
-      desc: 'Breathing & sensory reset',
+      label: tr('home.groundYourself'),
+      desc: tr('home.groundYourselfDesc'),
       icon: Leaf,
       tint: 'bg-emerald-50',
       iconColor: 'text-emerald-700',
       onClick: onOpenGrounding,
     },
     {
-      label: 'My Check-Ins',
-      desc: 'Browse your private timeline',
+      label: tr('home.myCheckIns'),
+      desc: tr('home.myCheckInsDesc'),
       icon: BookOpen,
       tint: 'bg-sky-50',
       iconColor: 'text-[#006398]',
@@ -111,10 +104,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>{tr.eyebrow}</span>
+            <span>{tr('home.eyebrow')}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{tr.greeting} <Emoji>🌿</Emoji></h1>
-          <p className="text-slate-600 text-sm mt-1">{tr.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{tr('home.greeting')} <Emoji>🌿</Emoji></h1>
+          <p className="text-slate-600 text-sm mt-1">{tr('home.subtitle')}</p>
         </motion.div>
 
         {/* Stat Cards */}
@@ -134,7 +127,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                   <Icon className={`h-5 w-5 ${s.iconColor}`} />
                 </div>
                 <div className="text-2xl font-headline font-bold text-slate-900">
-                  {s.label === "Today's Mood" ? <Emoji>{s.value}</Emoji> : s.value}{' '}
+                  {s.isMood ? <Emoji>{s.value}</Emoji> : s.value}{' '}
                   <span className="text-sm font-normal text-slate-400">{s.unit}</span>
                 </div>
                 <div className="text-xs text-slate-500 mt-1">{s.label}</div>
@@ -181,9 +174,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
               <div>
                 <h3 className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
                   <Activity className="h-4 w-4 text-[#005c55]" />
-                  Recent Mood Trend
+                  {tr('home.moodTrend')}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">Your last {trend.length} logged reflections</p>
+                <p className="text-xs text-slate-500 mt-0.5">{tr('home.moodTrendDesc', { n: trend.length })}</p>
               </div>
             </div>
             <ResponsiveContainer width="100%" height={220}>
@@ -215,7 +208,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-teal-400/15 rounded-full blur-2xl pointer-events-none" />
             <div className="relative flex items-center gap-2 mb-3">
               <Sparkles className="h-4 w-4 text-[#005c55]" />
-              <h3 className="font-bold text-sm text-slate-900">Today's Affirmation</h3>
+              <h3 className="font-bold text-sm text-slate-900">{tr('home.affirmation')}</h3>
             </div>
             <p className="relative text-base leading-relaxed flex-1 text-slate-700">"{todaysAffirmation}"</p>
           </motion.div>
@@ -232,7 +225,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
               <Emoji>{latestReflection.emoji}</Emoji>
             </div>
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">Latest Reflection · {latestReflection.date}</h3>
+              <h3 className="font-bold text-slate-900 text-sm">{tr('home.latestReflection')} · {latestReflection.date}</h3>
               <p className="text-xs text-slate-500 mt-0.5 max-w-lg">{latestReflection.summary}</p>
             </div>
           </div>
@@ -240,7 +233,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
             onClick={() => onOpenReflection(latestReflection)}
             className="shrink-0 px-4 py-2 rounded-xl bg-[#eff4ff] hover:bg-[#e5eeff] text-[#0b1c30] text-xs font-bold transition-colors cursor-pointer"
           >
-            View Full Entry
+            {tr('home.viewFullEntry')}
           </button>
         </motion.div>
 
@@ -253,9 +246,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
           <div className="mb-4">
             <h3 className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
               <Zap className="h-4 w-4 text-[#005c55]" />
-              Quick Mood Check-in
+              {tr('home.quickMoodCheckIn')}
             </h3>
-            <p className="text-xs text-slate-500">Tap any mood to instantly log how you are feeling right now.</p>
+            <p className="text-xs text-slate-500">{tr('home.quickMoodDesc')}</p>
           </div>
           <div className="grid grid-cols-5 gap-2 sm:gap-3">
             {QUICK_MOODS.map((m) => (
@@ -267,14 +260,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenGrounding,
                 className={`flex flex-col items-center justify-center gap-1.5 py-3 sm:py-4 px-2 rounded-2xl border-2 border-transparent transition-all cursor-pointer ${m.tint}`}
               >
                 <span className="text-2xl sm:text-3xl"><Emoji>{m.emoji}</Emoji></span>
-                <span className="text-[11px] font-semibold text-slate-600">{m.type}</span>
+                <span className="text-[11px] font-semibold text-slate-600">{tr(m.key)}</span>
               </motion.button>
             ))}
           </div>
           {ackMood && (
             <div className="mt-4 p-3 rounded-xl bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2 animate-in fade-in duration-200">
               <CheckCircle2 className="h-4 w-4" />
-              <span>Logged "{ackMood}" check-in! Keep breathing.</span>
+              <span>{tr('home.loggedMood', { mood: ackMood })}</span>
             </div>
           )}
         </motion.div>
