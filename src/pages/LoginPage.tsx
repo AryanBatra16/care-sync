@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
+import { LanguageCode, t } from '../lib/translations';
 
 interface LoginPageProps {
   onNavigate: (page: PageId) => void;
   onLoginSuccess: (role: 'counselor' | 'admin' | 'survivor') => void;
+  language: LanguageCode;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess, language }) => {
+  const tr = t(language);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'survivor' | 'counselor' | 'admin'>('survivor');
@@ -60,19 +63,19 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-[16px]">lock_person</span>
-            <span>Secure Gateway</span>
+            <span>{tr('login.eyebrow')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-            Welcome Back
+            {tr('login.title')}
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
-            Sign in to access your authorized care portal or clinical oversight dashboard.
+            {tr('login.subtitle')}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1">Select Access Role</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">{tr('login.roleLabel')}</label>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
@@ -83,7 +86,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                 }`}
               >
-                Survivor
+                {tr('login.roleSurvivor')}
               </button>
               <button
                 type="button"
@@ -94,7 +97,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                 }`}
               >
-                Counselor
+                {tr('login.roleCounselor')}
               </button>
               <button
                 type="button"
@@ -105,13 +108,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                 }`}
               >
-                Admin
+                {tr('login.roleAdmin')}
               </button>
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1">Account Email</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">{tr('login.emailLabel')}</label>
             <input
               type="email"
               required
@@ -124,13 +127,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs font-bold text-slate-700">Hardware Token / Passphrase</label>
+              <label className="block text-xs font-bold text-slate-700">{tr('login.passwordLabel')}</label>
               <button
                 type="button"
                 onClick={() => onNavigate('forgot-password')}
                 className="text-[11px] font-semibold text-teal-700 hover:underline"
               >
-                Forgot credentials?
+                {tr('login.forgot')}
               </button>
             </div>
             <input
@@ -147,21 +150,21 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
             type="submit"
             className="w-full py-3 rounded-xl bg-[#005c55] hover:bg-[#0f766e] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
           >
-            Authenticate &amp; Open Portal
+            {tr('login.submit')}
           </button>
         </form>
 
         {/* Divider */}
         <div className="flex items-center gap-3 my-6">
           <div className="h-px flex-1 bg-slate-100" />
-          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">or</span>
+          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{tr('login.or')}</span>
           <div className="h-px flex-1 bg-slate-100" />
         </div>
 
         {/* Quick Demo Fill (secondary action) */}
         <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 flex flex-col gap-2">
           <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-            Quick Demo Role Fill
+            {tr('login.quickDemo')}
           </span>
           <div className="flex gap-2">
             <button
@@ -169,32 +172,32 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
               onClick={handleDemoSurvivor}
               className="flex-1 py-1.5 px-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/70 text-xs font-semibold transition-colors cursor-pointer"
             >
-              Survivor
+              {tr('login.roleSurvivor')}
             </button>
             <button
               type="button"
               onClick={handleDemoCounselor}
               className="flex-1 py-1.5 px-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200/70 text-xs font-semibold transition-colors cursor-pointer"
             >
-              Counselor
+              {tr('login.roleCounselor')}
             </button>
             <button
               type="button"
               onClick={handleDemoAdmin}
               className="flex-1 py-1.5 px-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200/70 text-xs font-semibold transition-colors cursor-pointer"
             >
-              Admin
+              {tr('login.roleAdmin')}
             </button>
           </div>
         </div>
 
         <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
-          <span>Don't have an agency account?</span>
+          <span>{tr('login.noAccount')}</span>
           <button
             onClick={() => onNavigate('register')}
             className="text-teal-800 font-bold hover:underline"
           >
-            Request Access →
+            {tr('login.requestAccess')}
           </button>
         </div>
       </div>

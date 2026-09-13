@@ -96,7 +96,7 @@ export default function App() {
 
       {/* Main Content Area (padded for fixed header) */}
       <main className="flex-1 pt-16 md:pt-20">
-        {currentPage === 'landing' && <LandingPage onNavigate={handleNavigate} />}
+        {currentPage === 'landing' && <LandingPage onNavigate={handleNavigate} language={language} />}
 
         {currentPage === 'home' && (
           <HomePage
@@ -112,6 +112,7 @@ export default function App() {
             onNavigate={handleNavigate}
             onOpenGrounding={() => setGroundingOpen(true)}
             onOpenCounselor={() => setCounselorOpen(true)}
+            language={language}
           />
         )}
 
@@ -120,6 +121,7 @@ export default function App() {
             onNavigate={handleNavigate}
             onOpenGrounding={() => setGroundingOpen(true)}
             onOpenCounselor={() => setCounselorOpen(true)}
+            language={language}
           />
         )}
 
@@ -127,6 +129,7 @@ export default function App() {
           <MyCheckInsPage
             onNavigate={handleNavigate}
             onOpenReflection={(item) => setReflectionModalItem(item)}
+            language={language}
           />
         )}
 
@@ -134,6 +137,7 @@ export default function App() {
           <CounselorCasesPage
             onNavigate={handleNavigate}
             onSelectCase={handleSelectCase}
+            language={language}
           />
         )}
 
@@ -142,6 +146,7 @@ export default function App() {
             caseId={selectedCaseId}
             onNavigate={handleNavigate}
             onOpenCounselorRelay={() => setCounselorOpen(true)}
+            language={language}
           />
         )}
 
@@ -149,15 +154,16 @@ export default function App() {
           <CounselorAlertsPage
             onNavigate={handleNavigate}
             onSelectCase={handleSelectCase}
+            language={language}
           />
         )}
 
         {currentPage === 'admin-portal' && (
-          <AdminPortalPage onNavigate={handleNavigate} />
+          <AdminPortalPage onNavigate={handleNavigate} language={language} />
         )}
 
         {currentPage === 'ethics-and-privacy' && (
-          <EthicsAndPrivacyPage onNavigate={handleNavigate} />
+          <EthicsAndPrivacyPage onNavigate={handleNavigate} language={language} />
         )}
 
         {currentPage === 'settings' && (
@@ -182,15 +188,16 @@ export default function App() {
           <LoginPage
             onNavigate={handleNavigate}
             onLoginSuccess={(role) => setUserRole(role)}
+            language={language}
           />
         )}
 
         {currentPage === 'register' && (
-          <RegisterPage onNavigate={handleNavigate} />
+          <RegisterPage onNavigate={handleNavigate} language={language} />
         )}
 
         {currentPage === 'forgot-password' && (
-          <ForgotPasswordPage onNavigate={handleNavigate} />
+          <ForgotPasswordPage onNavigate={handleNavigate} language={language} />
         )}
       </main>
 
