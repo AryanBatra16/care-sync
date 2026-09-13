@@ -486,30 +486,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, languag
                       </div>
                     </div>
                   </button>
-
-                  {/* Clinical Case Detail */}
-                  <button
-                    onClick={() => handleSelectNav('case-detail')}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer group ${
-                      currentPage === 'case-detail'
-                        ? 'bg-[#dce9ff] text-[#00476e] font-bold shadow-xs'
-                        : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900 font-medium'
-                    }`}
-                  >
-                    <span
-                      className={`material-symbols-outlined text-[20px] transition-transform group-hover:scale-110 ${
-                        currentPage === 'case-detail' ? 'text-[#006398]' : 'text-slate-400 group-hover:text-slate-600'
-                      }`}
-                    >
-                      troubleshoot
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <div className="leading-snug truncate">{tr('header.drawer.caseReview')}</div>
-                      <div className="text-[11px] text-slate-400 font-normal truncate">
-                        {tr('header.drawer.caseReviewDesc')}
-                      </div>
-                    </div>
-                  </button>
                 </div>
               </div>
 
