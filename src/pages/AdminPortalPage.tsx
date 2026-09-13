@@ -117,7 +117,7 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
               16 Beds Left
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-2">Across 6 accredited regional emergency shelters</p>
+          <p className="text-xs text-slate-500 mt-2">Demo data — not connected to any real shelter network</p>
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
@@ -197,7 +197,7 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>Differential Privacy Noise Added (ε = 0.5)</span>
+            <span>Demo data — not a real privacy-preserving computation</span>
             <button
               onClick={() => onNavigate('ethics-and-privacy')}
               className="text-teal-700 font-bold hover:underline"
