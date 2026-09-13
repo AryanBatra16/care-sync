@@ -96,13 +96,14 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-2">Explainable Distress Indexing</h3>
             <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              We reject opaque, black-box AI risk generation. Every distress score is calculated via transparent,
-              auditable clinical heuristics that counselors can inspect, verify, and override in real-time.
+              Distress scores shown in this prototype are static, synthetic numbers — there is no real scoring model
+              or counselor override feature behind them yet. A production version should use transparent, auditable
+              heuristics instead of an opaque black box.
             </p>
           </div>
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Auditability: Open Clinical Weights</span>
-            <span className="text-emerald-700 font-bold">Full Transparency</span>
+            <span>Design principle</span>
+            <span className="text-emerald-700 font-bold">Not yet implemented</span>
           </div>
         </div>
 
@@ -114,13 +115,14 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-2">Survivor Agency &amp; Consensual Triage</h3>
             <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              Survivors maintain sovereignty over their own narrative. Counselor engagement occurs only upon mutual
-              opt-in or when rigorous, rule-bound safety triggers indicate immediate danger to life.
+              Survivors should maintain sovereignty over their own narrative, with counselor engagement only on
+              mutual opt-in. This prototype does not implement any real safety-trigger or counselor-notification
+              system — that's a design principle for a real deployment, not a working feature here.
             </p>
           </div>
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
             <span>Ethics: Trauma-Informed Care (TIC)</span>
-            <span className="text-emerald-700 font-bold">Empowerment Focused</span>
+            <span className="text-emerald-700 font-bold">Design Principle</span>
           </div>
         </div>
       </div>
@@ -129,7 +131,8 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
       <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-xs">
         <h3 className="text-xl font-extrabold text-slate-900 mb-2">Support workflow</h3>
         <p className="text-slate-600 text-sm mb-8 max-w-2xl leading-relaxed">
-          How a check-in moves from the private session to the counselor queue in this demonstration.
+          A conceptual illustration of how a check-in could move from the private session to the counselor queue —
+          none of these steps are backed by real infrastructure in this prototype.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
