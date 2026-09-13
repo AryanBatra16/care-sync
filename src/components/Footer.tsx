@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span className="font-semibold text-slate-800">SanctumCare Foundation © 2025</span>
+            <span className="font-semibold text-slate-800">CareSync Foundation © 2025</span>
           </div>
           <span className="hidden sm:inline text-slate-300">•</span>
           <span>Zero-trace session guaranteed: Ephemeral client-side encryption active.</span>

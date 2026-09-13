@@ -9,7 +9,7 @@ export const CounselorModal: React.FC<CounselorModalProps> = ({ isOpen, onClose 
   const [relayActive, setRelayActive] = useState(false);
   const [relayInput, setRelayInput] = useState('');
   const [relayMessages, setRelayMessages] = useState<string[]>([
-    'SafeCheck Encrypted Counselor Relay connected. A crisis advocate is reviewing your anonymous line.',
+    'CareSync Encrypted Counselor Relay connected. A crisis advocate is reviewing your anonymous line.',
   ]);
 
   if (!isOpen) return null;

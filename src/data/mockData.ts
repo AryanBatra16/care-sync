@@ -232,7 +232,7 @@ export const MOCK_REFLECTIONS: CheckInReflection[] = [
     emoji: '😔',
     summary: 'Guided check-in completed • Practiced self-care protocols',
     detailedNote:
-      '"Tough morning with intrusive memories and sleep deprivation. Completed the guided SafeCheck check-in and reviewed my personal safety boundaries."',
+      '"Tough morning with intrusive memories and sleep deprivation. Completed the guided CareSync check-in and reviewed my personal safety boundaries."',
     isPrivate: true,
   },
 ];

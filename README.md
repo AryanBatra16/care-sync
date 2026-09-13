@@ -1,4 +1,4 @@
-﻿# SanctumCare
+﻿# CareSync
 
 > A trauma-informed, zero-knowledge crisis support and wellbeing check-in platform featuring survivor privacy isolation, counselor clinical triage, and regional administrative oversight.
 

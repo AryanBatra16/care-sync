@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export const Sanctum3DCanvas: React.FC = () => {
+export const CareSync3DCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const Sanctum3DCanvas: React.FC = () => {
       pointLightBlue.position.set(-5, -4, 4);
       scene.add(pointLightBlue);
 
-      // Central Sanctum Group
+      // Central CareSync Group
       const coreGroup = new THREE.Group();
       scene.add(coreGroup);
 

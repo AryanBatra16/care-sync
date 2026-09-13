@@ -27,7 +27,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
             <span>Registration &amp; Key Issuance</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Create Your SafeCheck Access
+            Create Your CareSync Access
           </h1>
           <p className="text-slate-600 text-xs sm:text-sm mt-1">
             Survivors can check in immediately without an account. Use this form if you wish to persist an encrypted

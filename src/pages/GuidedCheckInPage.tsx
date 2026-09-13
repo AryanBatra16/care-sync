@@ -99,7 +99,7 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                 <span className="material-symbols-outlined text-[20px]">spa</span>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900">SafeCheck Sanctuary AI</h3>
+                <h3 className="text-sm font-bold text-slate-900">CareSync Sanctuary AI</h3>
                 <p className="text-xs text-slate-500">Zero-trace conversational companion</p>
               </div>
             </div>

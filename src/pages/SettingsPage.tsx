@@ -50,7 +50,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onNavigate, onQuickE
             <span>Safety &amp; Quick Exit Controls</span>
           </h3>
           <p className="text-xs text-slate-500 mb-6">
-            Configure how SafeCheck protects you if someone walks into your room.
+            Configure how CareSync protects you if someone walks into your room.
           </p>
 
           <div className="space-y-4 text-xs">

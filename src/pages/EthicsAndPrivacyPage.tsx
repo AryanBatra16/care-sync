@@ -80,7 +80,7 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-2">Ephemeral In-Memory State</h3>
             <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              SafeCheck maintains zero persistent browser cookies and zero local tracking cookies. When a session
+              CareSync maintains zero persistent browser cookies and zero local tracking cookies. When a session
               concludes or the user hits Quick Exit (ESC), volatile memory buffers are overwritten with zero-bytes.
             </p>
           </div>

@@ -13,13 +13,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
   const [role, setRole] = useState<'counselor' | 'admin'>('counselor');
 
   const handleDemoCounselor = () => {
-    setEmail('dr.vance@safecheck.care');
+    setEmail('dr.vance@caresync.care');
     setPassword('••••••••••••');
     setRole('counselor');
   };
 
   const handleDemoAdmin = () => {
-    setEmail('dir.sharma@safecheck.gov');
+    setEmail('dir.sharma@caresync.gov');
     setPassword('••••••••••••');
     setRole('admin');
   };
@@ -110,7 +110,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@safecheck.care"
+                  placeholder="name@caresync.care"
                   className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
               </div>

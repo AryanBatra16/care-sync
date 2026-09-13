@@ -1,5 +1,5 @@
 {
-  "name": "SafeCheck",
+  "name": "CareSync",
   "description": "A trauma-informed, zero-knowledge crisis support and wellbeing check-in platform with survivor privacy isolation, counselor triage, and regional administrative oversight.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

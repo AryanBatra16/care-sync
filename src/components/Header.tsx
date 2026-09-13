@@ -102,7 +102,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onQuick
               </div>
               <div className="flex flex-col">
                 <span className="text-lg sm:text-xl font-bold tracking-tight text-[#0b1c30] group-hover:text-[#005c55] transition-colors leading-none">
-                  SanctumCare
+                  CareSync
                 </span>
                 <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase hidden sm:block mt-0.5">
                   Confidential Sanctuary
@@ -233,7 +233,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onQuick
               <span className="material-symbols-outlined text-[19px]">spa</span>
             </div>
             <div>
-              <div className="text-base font-bold text-[#0b1c30] leading-none">SanctumCare</div>
+              <div className="text-base font-bold text-[#0b1c30] leading-none">CareSync</div>
               <div className="text-[10px] text-[#005c55] font-semibold mt-0.5 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 <span>Encrypted &amp; Private</span>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
-import { Sanctum3DCanvas } from '../components/Sanctum3DCanvas';
+import { CareSync3DCanvas } from '../components/CareSync3DCanvas';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -64,7 +64,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
               {/* Subtext */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal">
-                SanctumCare dynamically isolates survivor identities, conducts trauma-informed conversational triage,
+                CareSync dynamically isolates survivor identities, conducts trauma-informed conversational triage,
                 and routes urgent crisis thresholds to counselors — with 100% zero-knowledge cryptographic privacy.
               </p>
 
@@ -145,7 +145,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="relative w-full rounded-2xl bg-[#eff4ff]/70 backdrop-blur-2xl shadow-2xl p-3 border border-slate-200/80 overflow-hidden">
                 {/* 3D Holographic Canvas Stage */}
                 <div className="relative w-full h-[460px] sm:h-[520px] rounded-xl overflow-hidden bg-gradient-to-b from-[#e5eeff] to-[#dce9ff]/90 flex items-center justify-center">
-                  <Sanctum3DCanvas />
+                  <CareSync3DCanvas />
 
                   {/* Ambient Backdrop Telemetry Rings */}
                   <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30">
@@ -263,7 +263,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="mt-8 pt-6 border-t border-slate-100">
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
                   <span>Standard Hotline (45m)</span>
-                  <span className="text-[#005c55] font-semibold">SanctumCare (&lt;90s)</span>
+                  <span className="text-[#005c55] font-semibold">CareSync (&lt;90s)</span>
                 </div>
                 <svg className="w-full h-14 overflow-visible" fill="none" viewBox="0 0 280 60">
                   {/* Background reference line */}
@@ -384,7 +384,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   Interactive Triage Simulator
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  Experience how SanctumCare instantly balances survivor privacy with rapid counselor escalation when
+                  Experience how CareSync instantly balances survivor privacy with rapid counselor escalation when
                   acute distress signals are detected.
                 </p>
                 <div className="flex items-center gap-3 pt-2">
@@ -482,7 +482,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             Coordinated care with the support networks you already trust.
           </h2>
           <p className="text-base text-slate-600 leading-relaxed">
-            SanctumCare replaces fragmented crisis systems with unified, local coordination across somatic grounding,
+            CareSync replaces fragmented crisis systems with unified, local coordination across somatic grounding,
             clinical triage, and regional administrative safety nets.
           </p>
         </div>
@@ -640,7 +640,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               Traditional crisis hotlines of the past demanded endless bureaucratic intake and painful repetition of
-              trauma. SanctumCare runs an empathetic neural model that respects your boundaries, learns your somatic
+              trauma. CareSync runs an empathetic neural model that respects your boundaries, learns your somatic
               baseline, and offers instant refuge without judgment.
             </p>
             <div className="pt-2">
@@ -726,12 +726,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* SanctumCare Autonomous Sanctuary */}
+            {/* CareSync Autonomous Sanctuary */}
             <div className="p-8 rounded-2xl bg-white shadow-xl space-y-6 relative overflow-hidden border border-teal-200/80">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-bl-full pointer-events-none" />
               <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h4 className="text-xl font-headline font-bold text-[#0b1c30]">SanctumCare Autonomous Sanctuary</h4>
+                  <h4 className="text-xl font-headline font-bold text-[#0b1c30]">CareSync Autonomous Sanctuary</h4>
                   <p className="text-xs text-slate-500">Closed-loop zero-knowledge crisis coordination</p>
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-mono bg-teal-100 text-teal-900 font-semibold">
@@ -833,7 +833,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto">
               Check your regional district coverage instantly. Over 140 health agencies and clinical boards now subsidize
-              SanctumCare confidential check-ins with 100% free survivor access.
+              CareSync confidential check-ins with 100% free survivor access.
             </p>
 
             {/* Address / Zip Search Input Cluster */}

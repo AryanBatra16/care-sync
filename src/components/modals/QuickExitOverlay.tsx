@@ -35,7 +35,7 @@ export const QuickExitOverlay: React.FC<QuickExitOverlayProps> = ({ isOpen, onCa
             onClick={onCancel}
             className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-colors"
           >
-            Stay on SafeCheck
+            Stay on CareSync
           </button>
         </div>
         <p className="text-xs text-slate-400">Shortcut: Pressing ESC anytime immediately activates this discreet exit.</p>
