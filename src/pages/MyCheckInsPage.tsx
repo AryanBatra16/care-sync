@@ -4,19 +4,13 @@ import { Flame, PlusCircle, Eye, Trash2, Sparkles, Lock } from 'lucide-react';
 import { PageId, CheckInReflection, MoodType } from '../types';
 import { MOCK_REFLECTIONS, ASSETS } from '../data/mockData';
 import { Emoji } from '../components/Emoji';
+import { LanguageCode, t } from '../lib/translations';
 
 interface MyCheckInsPageProps {
   onNavigate: (page: PageId) => void;
   onOpenReflection: (reflection: CheckInReflection) => void;
+  language: LanguageCode;
 }
-
-const MOODS: { type: MoodType; emoji: string; tint: string; ring: string }[] = [
-  { type: 'Great', emoji: '😊', tint: 'bg-emerald-50', ring: 'border-emerald-500' },
-  { type: 'Okay', emoji: '🙂', tint: 'bg-teal-50', ring: 'border-teal-500' },
-  { type: 'Neutral', emoji: '😐', tint: 'bg-slate-100', ring: 'border-slate-400' },
-  { type: 'Worried', emoji: '😟', tint: 'bg-amber-50', ring: 'border-amber-500' },
-  { type: 'Struggling', emoji: '😔', tint: 'bg-rose-50', ring: 'border-rose-500' },
-];
 
 const HEAT_COLOR: Record<MoodType, string> = {
   Great: '#10b981',
@@ -30,7 +24,16 @@ const HEAT_COLOR: Record<MoodType, string> = {
 // reflection of the mock data instead of always showing blank cells for "today".
 const HEATMAP_END = new Date(2026, 8, 5);
 
-export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOpenReflection }) => {
+export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOpenReflection, language }) => {
+  const tr = t(language);
+  const MOODS: { type: MoodType; label: string; emoji: string; tint: string; ring: string }[] = [
+    { type: 'Great', label: tr('checkin.moodGreat'), emoji: '😊', tint: 'bg-emerald-50', ring: 'border-emerald-500' },
+    { type: 'Okay', label: tr('checkin.moodOkay'), emoji: '🙂', tint: 'bg-teal-50', ring: 'border-teal-500' },
+    { type: 'Neutral', label: tr('checkin.moodNeutral'), emoji: '😐', tint: 'bg-slate-100', ring: 'border-slate-400' },
+    { type: 'Worried', label: tr('checkin.moodWorried'), emoji: '😟', tint: 'bg-amber-50', ring: 'border-amber-500' },
+    { type: 'Struggling', label: tr('checkin.moodStruggling'), emoji: '😔', tint: 'bg-rose-50', ring: 'border-rose-500' },
+  ];
+
   const [reflections, setReflections] = useState(MOCK_REFLECTIONS);
   const [filterMood, setFilterMood] = useState<string>('all');
   const [selectedMood, setSelectedMood] = useState<MoodType>('Okay');
@@ -42,7 +45,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
     : reflections.filter((r) => r.mood.toLowerCase() === filterMood.toLowerCase());
 
   const handlePurge = () => {
-    if (window.confirm('Are you sure you want to securely shred all local reflection entries? This cannot be undone.')) {
+    if (window.confirm(tr('myci.confirmPurge'))) {
       setReflections([]);
     }
   };
@@ -79,6 +82,15 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
     return { date: d, mood: match?.mood, emoji: match?.emoji };
   });
 
+  const moodFilters: { key: string; label: string }[] = [
+    { key: 'all', label: tr('myci.filterAll') },
+    { key: 'Great', label: tr('checkin.moodGreat') },
+    { key: 'Okay', label: tr('checkin.moodOkay') },
+    { key: 'Neutral', label: tr('checkin.moodNeutral') },
+    { key: 'Worried', label: tr('checkin.moodWorried') },
+    { key: 'Struggling', label: tr('checkin.moodStruggling') },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
       {/* Top Banner */}
@@ -86,13 +98,13 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-2">
             <Lock className="h-4 w-4" />
-            <span>Personal Timeline • Private session</span>
+            <span>{tr('myci.eyebrow')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            My Check-In Journey
+            {tr('myci.title')}
           </h1>
           <p className="text-slate-600 text-sm sm:text-base mt-1 max-w-xl">
-            A private timeline of your reflections and emotional journey for this prototype session.
+            {tr('myci.subtitle')}
           </p>
         </div>
 
@@ -101,7 +113,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
           className="px-6 py-3 rounded-2xl bg-[#005c55] hover:bg-[#0f766e] text-white font-bold text-sm shadow-sm hover:shadow-md transition-all flex items-center gap-2 cursor-pointer shrink-0"
         >
           <PlusCircle className="h-4 w-4" />
-          <span>New Check-In</span>
+          <span>{tr('myci.newCheckIn')}</span>
         </button>
       </div>
 
@@ -115,9 +127,9 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
         >
           <h3 className="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-teal-700" />
-            Quick Mood Logger
+            {tr('myci.moodLogger')}
           </h3>
-          <p className="text-xs text-slate-500 mb-4">Log how you're feeling right now — it's saved to this timeline.</p>
+          <p className="text-xs text-slate-500 mb-4">{tr('myci.moodLoggerDesc')}</p>
 
           <div className="grid grid-cols-5 gap-2 sm:gap-3 mb-4">
             {MOODS.map((m) => (
@@ -130,7 +142,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
                 }`}
               >
                 <span className="text-2xl sm:text-3xl"><Emoji>{m.emoji}</Emoji></span>
-                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600">{m.type}</span>
+                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-600">{m.label}</span>
               </button>
             ))}
           </div>
@@ -138,7 +150,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="Add a short note about how you're feeling (optional)..."
+            placeholder={tr('myci.notePlaceholder')}
             rows={2}
             className="w-full rounded-xl border border-slate-200 bg-slate-50/50 p-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#005c55] resize-none mb-3"
           />
@@ -147,12 +159,12 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
             type="submit"
             className="w-full py-2.5 rounded-xl bg-[#005c55] hover:bg-[#0f766e] text-white font-bold text-sm shadow-sm transition-all cursor-pointer"
           >
-            Save Reflection
+            {tr('myci.saveReflection')}
           </button>
 
           {savedNotice && (
             <div className="mt-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">
-              <span>Reflection saved to your timeline.</span>
+              <span>{tr('myci.savedNotice')}</span>
             </div>
           )}
         </motion.form>
@@ -168,7 +180,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
               <Flame className="h-6 w-6" />
             </div>
             <div className="text-3xl font-headline font-bold text-slate-900">4</div>
-            <div className="text-xs text-slate-500">day streak</div>
+            <div className="text-xs text-slate-500">{tr('myci.dayStreak')}</div>
           </motion.div>
 
           <motion.div
@@ -176,7 +188,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
             animate={{ opacity: 1, y: 0 }}
             className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs"
           >
-            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider">5-Week Overview</h4>
+            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider">{tr('myci.weekOverview')}</h4>
             <div className="grid grid-cols-7 gap-1">
               {heatmapDays.map((d, i) => (
                 <div
@@ -187,7 +199,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
                 />
               ))}
             </div>
-            <p className="text-[11px] text-slate-400 mt-2">Colored squares mark days with a real logged reflection.</p>
+            <p className="text-[11px] text-slate-400 mt-2">{tr('myci.heatmapNote')}</p>
           </motion.div>
         </div>
       </div>
@@ -198,20 +210,20 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
           {/* Filters and count */}
           <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
             <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              {filtered.length} Recorded Entries
+              {filtered.length} {tr('myci.recordedEntries')}
             </div>
             <div className="flex items-center gap-1.5 text-xs">
-              {['all', 'Great', 'Okay', 'Neutral', 'Worried', 'Struggling'].map((m) => (
+              {moodFilters.map((m) => (
                 <button
-                  key={m}
-                  onClick={() => setFilterMood(m)}
+                  key={m.key}
+                  onClick={() => setFilterMood(m.key)}
                   className={`px-2.5 py-1 rounded-lg capitalize transition-colors cursor-pointer ${
-                    filterMood === m
+                    filterMood === m.key
                       ? 'bg-teal-700 text-white font-bold'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
-                  {m}
+                  {m.label}
                 </button>
               ))}
             </div>
@@ -219,12 +231,12 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
 
           {filtered.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center border border-slate-200 text-slate-500">
-              <p className="text-sm font-semibold">Local timeline is clean or purged.</p>
+              <p className="text-sm font-semibold">{tr('myci.emptyState')}</p>
               <button
                 onClick={() => setReflections(MOCK_REFLECTIONS)}
                 className="mt-4 text-xs font-bold text-teal-700 hover:underline cursor-pointer"
               >
-                Restore Demo Reflections
+                {tr('myci.restoreDemo')}
               </button>
             </div>
           ) : (
@@ -258,7 +270,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
                     className="self-end sm:self-center px-3.5 py-1.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200/70 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shrink-0"
                   >
                     <Eye className="h-4 w-4" />
-                    <span>View Note</span>
+                    <span>{tr('myci.viewNote')}</span>
                   </button>
                 </motion.div>
               ))}
@@ -278,14 +290,13 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-3 left-4 text-white">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-teal-300">Inner Grounding</span>
-                <p className="text-sm font-bold">The Stillness Garden</p>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-teal-300">{tr('myci.stillnessTag')}</span>
+                <p className="text-sm font-bold">{tr('myci.stillnessTitle')}</p>
               </div>
             </div>
             <div className="p-5">
               <p className="text-xs text-slate-600 leading-relaxed">
-                Take a moment of quiet reflection. Your thoughts belong entirely to you, unindexed by any marketing or
-                tracking algorithm.
+                {tr('myci.stillnessBody')}
               </p>
             </div>
           </div>
@@ -294,17 +305,17 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
           <div className="bg-rose-50/70 rounded-2xl p-5 border border-rose-200/80">
             <div className="flex items-center gap-2 text-rose-900 font-bold text-sm mb-2">
               <Trash2 className="h-5 w-5 text-rose-600" />
-              <span>Reflection Data Purge</span>
+              <span>{tr('myci.purgeTitle')}</span>
             </div>
             <p className="text-xs text-rose-800/80 leading-relaxed mb-4">
-              Instantly erase all reflection timestamps, mood records, and notes from this device's memory.
+              {tr('myci.purgeBody')}
             </p>
             <button
               onClick={handlePurge}
               className="w-full py-2 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-colors cursor-pointer flex items-center justify-center gap-1.5"
             >
               <Trash2 className="h-4 w-4" />
-              <span>Wipe All Local History</span>
+              <span>{tr('myci.purgeButton')}</span>
             </button>
           </div>
         </div>

@@ -258,6 +258,7 @@ const en: Dict = {
   'myci.purgeTitle': 'Reflection Data Purge',
   'myci.purgeBody': "Instantly erase all reflection timestamps, mood records, and notes from this device's memory.",
   'myci.purgeButton': 'Wipe All Local History',
+  'myci.confirmPurge': 'Are you sure you want to securely shred all local reflection entries? This cannot be undone.',
 
   // Settings
   'settings.eyebrow': 'Preferences & Security Configuration',
@@ -567,6 +568,7 @@ const es: Dict = translate({
   'myci.purgeTitle': 'Purga de Datos de Reflexión',
   'myci.purgeBody': 'Borra al instante todas las marcas de tiempo, registros de ánimo y notas de reflexión de la memoria de este dispositivo.',
   'myci.purgeButton': 'Borrar Todo el Historial Local',
+  'myci.confirmPurge': '¿Estás seguro de que deseas eliminar de forma segura todas las entradas de reflexión locales? Esto no se puede deshacer.',
 
   'settings.eyebrow': 'Configuración de Preferencias y Seguridad',
   'settings.title': 'Configuración y Personalización',
@@ -873,6 +875,7 @@ const fr: Dict = translate({
   'myci.purgeTitle': 'Purge des Données de Réflexion',
   'myci.purgeBody': 'Effacez instantanément tous les horodatages, enregistrements d’humeur et notes de réflexion de la mémoire de cet appareil.',
   'myci.purgeButton': 'Effacer Tout l’Historique Local',
+  'myci.confirmPurge': 'Voulez-vous vraiment détruire en toute sécurité toutes les entrées de réflexion locales ? Cette action est irréversible.',
 
   'settings.eyebrow': 'Configuration des Préférences et de la Sécurité',
   'settings.title': 'Paramètres et Personnalisation',
@@ -1177,6 +1180,7 @@ const zh: Dict = translate({
   'myci.purgeTitle': '反思数据清除',
   'myci.purgeBody': '立即从此设备的内存中清除所有反思时间戳、心情记录和备注。',
   'myci.purgeButton': '清除所有本地历史记录',
+  'myci.confirmPurge': '您确定要安全清除所有本地反思记录吗？此操作无法撤销。',
 
   'settings.eyebrow': '偏好与安全配置',
   'settings.title': '设置与个性化',
@@ -1481,6 +1485,7 @@ const ar: Dict = translate({
   'myci.purgeTitle': 'مسح بيانات التأملات',
   'myci.purgeBody': 'امسح فورًا جميع الطوابع الزمنية للتأملات وسجلات الحالة المزاجية والملاحظات من ذاكرة هذا الجهاز.',
   'myci.purgeButton': 'مسح كل السجل المحلي',
+  'myci.confirmPurge': 'هل أنت متأكد أنك تريد إتلاف جميع إدخالات التأملات المحلية بأمان؟ لا يمكن التراجع عن هذا الإجراء.',
 
   'settings.eyebrow': 'إعدادات التفضيلات والأمان',
   'settings.title': 'الإعدادات والتخصيص',
@@ -1785,6 +1790,7 @@ const vi: Dict = translate({
   'myci.purgeTitle': 'Xóa Dữ Liệu Suy Ngẫm',
   'myci.purgeBody': 'Xóa ngay lập tức tất cả dấu thời gian suy ngẫm, hồ sơ tâm trạng và ghi chú khỏi bộ nhớ của thiết bị này.',
   'myci.purgeButton': 'Xóa Toàn Bộ Lịch Sử Cục Bộ',
+  'myci.confirmPurge': 'Bạn có chắc chắn muốn xóa an toàn tất cả các mục suy ngẫm cục bộ không? Hành động này không thể hoàn tác.',
 
   'settings.eyebrow': 'Cấu Hình Tùy Chọn & Bảo Mật',
   'settings.title': 'Cài Đặt & Cá Nhân Hóa',
