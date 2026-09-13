@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
+import { LanguageCode, t } from '../lib/translations';
 
 interface CaseDetailPageProps {
   caseId: string;
   onNavigate: (page: PageId) => void;
   onOpenCounselorRelay: () => void;
+  language: LanguageCode;
 }
 
 export const CaseDetailPage: React.FC<CaseDetailPageProps> = ({
   caseId,
   onNavigate,
   onOpenCounselorRelay,
+  language,
 }) => {
+  const tr = t(language);
   const [checklist, setChecklist] = useState({
     reviewLogs: true,
     assessSafety: true,
@@ -49,7 +53,7 @@ export const CaseDetailPage: React.FC<CaseDetailPageProps> = ({
           <span className="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">
             arrow_back
           </span>
-          <span>Back to Caseload</span>
+          <span>{tr('caseDetail.backToCaseload')}</span>
         </button>
 
         <div className="flex items-center gap-2">

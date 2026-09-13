@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
+import { LanguageCode, t } from '../lib/translations';
 
 interface AdminPortalPageProps {
   onNavigate: (page: PageId) => void;
+  language: LanguageCode;
 }
 
-export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) => {
+export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate, language }) => {
+  const tr = t(language);
   const [selectedJurisdiction, setSelectedJurisdiction] = useState('Tri-County Metropolitan District');
 
   const districts = [
@@ -63,13 +66,13 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-sky-800 uppercase tracking-wider mb-1">
             <span className="material-symbols-outlined text-[16px]">shield_person</span>
-            <span>Executive &amp; Regional Governance</span>
+            <span>{tr('adminPortal.eyebrow')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Regional Administrative Overview
+            {tr('adminPortal.title')}
           </h1>
           <p className="text-slate-600 text-sm mt-1">
-            Aggregate survivor wellbeing indices, district safety resource allocation, and privacy program metrics.
+            {tr('adminPortal.subtitle')}
           </p>
         </div>
 

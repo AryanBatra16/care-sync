@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
 import { MOCK_ALERTS } from '../data/mockData';
+import { LanguageCode, t } from '../lib/translations';
 
 interface CounselorAlertsPageProps {
   onNavigate: (page: PageId) => void;
   onSelectCase: (caseId: string) => void;
+  language: LanguageCode;
 }
 
-export const CounselorAlertsPage: React.FC<CounselorAlertsPageProps> = ({ onNavigate, onSelectCase }) => {
+export const CounselorAlertsPage: React.FC<CounselorAlertsPageProps> = ({ onNavigate, onSelectCase, language }) => {
+  const tr = t(language);
   const [activeFilter, setActiveFilter] = useState<'all' | 'critical' | 'high' | 'resolved'>('all');
   const [alerts, setAlerts] = useState(MOCK_ALERTS);
 
@@ -37,7 +40,7 @@ export const CounselorAlertsPage: React.FC<CounselorAlertsPageProps> = ({ onNavi
             <span>Urgent Clinical Notifications</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Active Priority Alerts
+            {tr('counselorAlerts.title')}
           </h1>
           <p className="text-slate-600 text-sm mt-1">
             Automated alerts requiring immediate triage, outreach, or multi-agency coordination.
@@ -50,7 +53,7 @@ export const CounselorAlertsPage: React.FC<CounselorAlertsPageProps> = ({ onNavi
             className="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold flex items-center gap-1.5 shadow-2xs transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-            <span>Back to Caseload</span>
+            <span>{tr('caseDetail.backToCaseload')}</span>
           </button>
         </div>
       </div>

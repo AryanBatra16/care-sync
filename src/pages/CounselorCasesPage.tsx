@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { PageId, CaseRecord } from '../types';
 import { MOCK_CASES } from '../data/mockData';
+import { LanguageCode, t } from '../lib/translations';
 
 interface CounselorCasesPageProps {
   onNavigate: (page: PageId) => void;
   onSelectCase: (caseId: string) => void;
+  language: LanguageCode;
 }
 
-export const CounselorCasesPage: React.FC<CounselorCasesPageProps> = ({ onNavigate, onSelectCase }) => {
+export const CounselorCasesPage: React.FC<CounselorCasesPageProps> = ({ onNavigate, onSelectCase, language }) => {
+  const tr = t(language);
   const [searchQuery, setSearchQuery] = useState('');
   const [districtFilter, setDistrictFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -33,13 +36,13 @@ export const CounselorCasesPage: React.FC<CounselorCasesPageProps> = ({ onNaviga
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-1">
             <span className="material-symbols-outlined text-[16px]">clinical_notes</span>
-            <span>Counselor Operations • Clinical Caseload</span>
+            <span>{tr('counselorCases.eyebrow')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Active Triage Caseload
+            {tr('counselorCases.title')}
           </h1>
           <p className="text-slate-600 text-sm mt-1">
-            Real-time distress indices, escalation triggers, and survivor care reviews.
+            {tr('counselorCases.subtitle')}
           </p>
         </div>
 

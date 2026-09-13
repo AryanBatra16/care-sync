@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
-import { LANGUAGES, LanguageCode } from '../lib/translations';
+import { LANGUAGES, LanguageCode, t } from '../lib/translations';
 import { Emoji } from '../components/Emoji';
 
 interface SettingsPageProps {
@@ -51,6 +51,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
   language,
   setLanguage,
 }) => {
+  const tr = t(language);
   const [activeTab, setActiveTab] = useState<SettingsTab>('safety');
   const [autoWipeMinutes, setAutoWipeMinutes] = useState('10');
   const [savedNotice, setSavedNotice] = useState(false);
@@ -61,13 +62,13 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
   };
 
   const tabs: { id: SettingsTab; label: string; icon: string; iconColor: string }[] = [
-    { id: 'safety', label: 'Safety & Sessions', icon: 'shield', iconColor: 'text-rose-600' },
-    { id: 'language', label: 'Language', icon: 'translate', iconColor: 'text-teal-700' },
-    { id: 'appearance', label: 'Appearance', icon: 'palette', iconColor: 'text-[#006398]' },
-    { id: 'privacy', label: 'Privacy', icon: 'visibility', iconColor: 'text-teal-700' },
+    { id: 'safety', label: tr('settings.tabSafety'), icon: 'shield', iconColor: 'text-rose-600' },
+    { id: 'language', label: tr('settings.tabLanguage'), icon: 'translate', iconColor: 'text-teal-700' },
+    { id: 'appearance', label: tr('settings.tabAppearance'), icon: 'palette', iconColor: 'text-[#006398]' },
+    { id: 'privacy', label: tr('settings.tabPrivacy'), icon: 'visibility', iconColor: 'text-teal-700' },
   ];
 
-  const fontLabel = fontSize <= 13 ? 'Small' : fontSize >= 19 ? 'Large' : 'Default';
+  const fontLabel = fontSize <= 13 ? tr('settings.small') : fontSize >= 19 ? tr('settings.large') : tr('settings.default');
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
@@ -75,20 +76,20 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
       <div className="mb-8">
         <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-1">
           <span className="material-symbols-outlined text-[16px]">tune</span>
-          <span>Preferences &amp; Security Configuration</span>
+          <span>{tr('settings.eyebrow')}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Settings &amp; Personalization
+          {tr('settings.title')}
         </h1>
         <p className="text-slate-600 text-sm mt-1">
-          Adjust accessibility, session safety, and privacy preferences.
+          {tr('settings.subtitle')}
         </p>
       </div>
 
       {savedNotice && (
         <div className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2 animate-in fade-in duration-200">
           <span className="material-symbols-outlined text-[18px]">check_circle</span>
-          <span>Preferences updated securely in local memory.</span>
+          <span>{tr('settings.savedNotice')}</span>
         </div>
       )}
 
@@ -121,22 +122,22 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
             <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px] text-rose-600">shield</span>
-                <span>Safety &amp; Session Controls</span>
+                <span>{tr('settings.safetyTitle')}</span>
               </h3>
               <p className="text-xs text-slate-500 mb-6">
-                Configure how CareSync protects your session data.
+                {tr('settings.safetyDesc')}
               </p>
 
               <div className="space-y-4 text-xs">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2">
                   <div>
                     <p className="font-bold text-slate-800 flex items-center gap-2">
-                      Inactivity Timeout Auto-Purge
+                      {tr('settings.autoWipe')}
                       <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-amber-100 text-amber-800 uppercase tracking-wide">
-                        Upcoming
+                        {tr('settings.upcoming')}
                       </span>
                     </p>
-                    <p className="text-slate-500 mt-0.5">Wipe session RAM if no mouse or touch input detected. Not wired up yet — selecting a value doesn't take effect.</p>
+                    <p className="text-slate-500 mt-0.5">{tr('settings.autoWipeDesc')}</p>
                   </div>
                   <select
                     value={autoWipeMinutes}
@@ -158,17 +159,16 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
             <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px] text-teal-700">translate</span>
-                <span>Language</span>
+                <span>{tr('settings.languageTitle')}</span>
               </h3>
               <p className="text-xs text-slate-500 mb-6">
-                Choose your preferred reading language. Applies live to the header, footer, and dashboard greeting —
-                full app-wide translation is still in progress.
+                {tr('settings.languageDesc')}
               </p>
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2">
                 <div>
-                  <p className="font-bold text-slate-800 text-xs">Interface Language</p>
-                  <p className="text-slate-500 mt-0.5 text-xs">Prompts and guidance will adapt to this tongue.</p>
+                  <p className="font-bold text-slate-800 text-xs">{tr('settings.interfaceLanguage')}</p>
+                  <p className="text-slate-500 mt-0.5 text-xs">{tr('settings.interfaceLanguageDesc')}</p>
                 </div>
                 <select
                   value={language}
@@ -188,14 +188,14 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               <div>
                 <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                   <span className="material-symbols-outlined text-[20px] text-[#006398]">palette</span>
-                  <span>Appearance</span>
+                  <span>{tr('settings.appearanceTitle')}</span>
                 </h3>
-                <p className="text-xs text-slate-500">Theme, text size, and display density — applied live across the app.</p>
+                <p className="text-xs text-slate-500">{tr('settings.appearanceDesc')}</p>
               </div>
 
               {/* Theme */}
               <div>
-                <p className="font-bold text-slate-800 text-xs mb-2">Theme</p>
+                <p className="font-bold text-slate-800 text-xs mb-2">{tr('settings.theme')}</p>
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => setTheme('light')}
@@ -204,7 +204,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                     }`}
                   >
                     <span className="text-2xl"><Emoji>☀️</Emoji></span>
-                    <span className="text-xs font-bold text-slate-800">Light</span>
+                    <span className="text-xs font-bold text-slate-800">{tr('settings.light')}</span>
                   </button>
                   <button
                     onClick={() => setTheme('dark')}
@@ -213,19 +213,18 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                     }`}
                   >
                     <span className="text-2xl"><Emoji>🌙</Emoji></span>
-                    <span className="text-xs font-bold text-slate-800">Dark</span>
+                    <span className="text-xs font-bold text-slate-800">{tr('settings.dark')}</span>
                   </button>
                 </div>
                 <p className="text-[11px] text-slate-400 mt-2">
-                  Dark mode is applied as a color-inversion filter over the whole app rather than a hand-tuned dark
-                  palette, so photos are corrected but emoji may look slightly off-color.
+                  {tr('settings.themeNote')}
                 </p>
               </div>
 
               {/* Font size */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <p className="font-bold text-slate-800 text-xs">Font Size</p>
+                  <p className="font-bold text-slate-800 text-xs">{tr('settings.fontSize')}</p>
                   <span className="text-xs font-semibold text-slate-500">{fontSize}px</span>
                 </div>
                 <input
@@ -237,17 +236,17 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                   className="w-full accent-[#005c55]"
                 />
                 <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1">
-                  <span>Small</span>
+                  <span>{tr('settings.small')}</span>
                   <span className="font-semibold text-slate-600">{fontLabel}</span>
-                  <span>Large</span>
+                  <span>{tr('settings.large')}</span>
                 </div>
               </div>
 
               {/* High contrast */}
               <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-4">
                 <div>
-                  <p className="font-bold text-slate-800 text-xs">High Contrast Text Mode</p>
-                  <p className="text-slate-500 mt-0.5 text-xs">Boosts contrast across the whole app for low-light or glare conditions.</p>
+                  <p className="font-bold text-slate-800 text-xs">{tr('settings.highContrast')}</p>
+                  <p className="text-slate-500 mt-0.5 text-xs">{tr('settings.highContrastDesc')}</p>
                 </div>
                 <Toggle checked={highContrast} onChange={() => setHighContrast(!highContrast)} />
               </div>
@@ -255,8 +254,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               {/* Compact mode */}
               <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-4">
                 <div>
-                  <p className="font-bold text-slate-800 text-xs">Compact Mode</p>
-                  <p className="text-slate-500 mt-0.5 text-xs">Tightens spacing across cards and sections to fit more on screen.</p>
+                  <p className="font-bold text-slate-800 text-xs">{tr('settings.compactMode')}</p>
+                  <p className="text-slate-500 mt-0.5 text-xs">{tr('settings.compactModeDesc')}</p>
                 </div>
                 <Toggle checked={compactMode} onChange={() => setCompactMode(!compactMode)} />
               </div>
@@ -264,8 +263,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               {/* Night contrast */}
               <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-4">
                 <div>
-                  <p className="font-bold text-slate-800 text-xs">Night Contrast</p>
-                  <p className="text-slate-500 mt-0.5 text-xs">An extra-dim look for late-night use. Stacks with Dark theme.</p>
+                  <p className="font-bold text-slate-800 text-xs">{tr('settings.nightContrast')}</p>
+                  <p className="text-slate-500 mt-0.5 text-xs">{tr('settings.nightContrastDesc')}</p>
                 </div>
                 <Toggle checked={nightContrast} onChange={() => setNightContrast(!nightContrast)} />
               </div>
@@ -276,10 +275,10 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
             <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px] text-teal-700">visibility</span>
-                <span>Session privacy</span>
+                <span>{tr('settings.privacyTitle')}</span>
               </h3>
               <p className="text-xs text-slate-500 mb-4">
-                This prototype keeps check-in state in the active browser session. Use demo data only.
+                {tr('settings.privacyDesc')}
               </p>
             </div>
           )}
@@ -290,13 +289,13 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               onClick={() => onNavigate('home')}
               className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors cursor-pointer"
             >
-              Cancel
+              {tr('common.cancel')}
             </button>
             <button
               onClick={handleSave}
               className="px-6 py-2.5 rounded-xl bg-[#005c55] hover:bg-[#0f766e] text-white text-xs font-bold shadow-sm transition-all cursor-pointer"
             >
-              Save Preferences
+              {tr('settings.savePreferences')}
             </button>
           </div>
         </div>
