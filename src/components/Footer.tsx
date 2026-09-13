@@ -43,35 +43,65 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
 
       {/* Main Footer Body */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
-        <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span className="font-semibold text-slate-800">CareSync Foundation © 2025</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-xs text-slate-500">
+          {/* Brand column */}
+          <div className="flex flex-col gap-2.5 text-center sm:text-left items-center sm:items-start">
+            <button
+              onClick={() => onNavigate('landing')}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#005c55] to-[#0f766e] flex items-center justify-center text-white shrink-0">
+                <span className="material-symbols-outlined text-[16px]">spa</span>
+              </div>
+              <span className="font-bold text-slate-800 text-sm">CareSync</span>
+            </button>
+            <p className="max-w-[220px]">Your session is designed with privacy and confidentiality in mind.</p>
           </div>
-          <span className="hidden sm:inline text-slate-300">•</span>
-          <span>Zero-trace session guaranteed: Ephemeral client-side encryption active.</span>
+
+          {/* Product column */}
+          <div className="text-center sm:text-left">
+            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">Product</div>
+            <div className="flex flex-col gap-2.5">
+              <button
+                onClick={() => onNavigate('guided-check-in')}
+                className="hover:text-teal-800 transition-colors text-left cursor-pointer"
+              >
+                Guided Check-In
+              </button>
+              <button
+                onClick={() => onNavigate('ethics-and-privacy')}
+                className="hover:text-teal-800 transition-colors text-left cursor-pointer"
+              >
+                Ethics &amp; Privacy
+              </button>
+            </div>
+          </div>
+
+          {/* Legal / Trust column */}
+          <div className="text-center sm:text-left">
+            <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px] mb-3">Legal &amp; Trust</div>
+            <div className="flex flex-col gap-2.5">
+              <button
+                onClick={() => onNavigate('settings')}
+                className="hover:text-teal-800 transition-colors text-left cursor-pointer"
+              >
+                Safety Protocol
+              </button>
+              <button
+                onClick={() => onNavigate('admin-portal')}
+                className="hover:text-teal-800 transition-colors text-left cursor-pointer"
+              >
+                Privacy Review
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <button
-            onClick={() => onNavigate('ethics-and-privacy')}
-            className="hover:text-teal-800 transition-colors underline underline-offset-4 cursor-pointer"
-          >
-            Ethics &amp; Privacy
-          </button>
-          <button
-            onClick={() => onNavigate('settings')}
-            className="hover:text-teal-800 transition-colors underline underline-offset-4 cursor-pointer"
-          >
-            Safety Protocol
-          </button>
-          <button
-            onClick={() => onNavigate('admin-portal')}
-            className="hover:text-teal-800 transition-colors underline underline-offset-4 cursor-pointer"
-          >
-            Cryptographic Audit
-          </button>
+        {/* Bottom copyright strip */}
+        <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
+          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span className="font-semibold text-slate-800">CareSync Foundation © 2025</span>
         </div>
       </div>
     </footer>

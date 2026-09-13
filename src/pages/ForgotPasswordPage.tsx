@@ -17,13 +17,26 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({ onNaviga
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
       <div className="max-w-md mx-auto bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 sm:p-8 text-center">
+        {/* Centered clickable brand mark */}
+        <button
+          onClick={() => onNavigate('landing')}
+          className="flex items-center justify-center gap-2.5 mx-auto mb-6 cursor-pointer group"
+        >
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#005c55] to-[#0f766e] flex items-center justify-center text-white shadow-sm shadow-teal-900/10 transition-transform group-hover:scale-105">
+            <span className="material-symbols-outlined text-[19px]">spa</span>
+          </div>
+          <span className="text-lg font-bold tracking-tight text-[#0b1c30] group-hover:text-[#005c55] transition-colors">
+            CareSync
+          </span>
+        </button>
+
         <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-800 flex items-center justify-center mx-auto mb-4">
           <span className="material-symbols-outlined text-[26px]">key_off</span>
         </div>
 
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">Reset Agency Key</h1>
         <p className="text-xs text-slate-500 mb-6 leading-relaxed">
-          Authorized personnel can request a cryptographic re-key link sent to their designated hardware-backed mailbox.
+          Authorized personnel can request an account recovery link sent to their designated work email.
         </p>
 
         {submitted ? (
@@ -62,7 +75,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({ onNaviga
           </button>
           <span>•</span>
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => onNavigate('landing')}
             className="hover:text-slate-800"
           >
             Return Home

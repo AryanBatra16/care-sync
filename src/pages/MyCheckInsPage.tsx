@@ -28,14 +28,13 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-800 uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-[16px]">lock</span>
-            <span>Personal Sanctuary • Local Vault</span>
+            <span>Personal Timeline • Private session</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             My Check-In Journey
           </h1>
           <p className="text-slate-600 text-sm sm:text-base mt-1 max-w-xl">
-            A private, encrypted timeline of your reflections and emotional journey. Decrypted only inside your local
-            browser session.
+            A private timeline of your reflections and emotional journey for this prototype session.
           </p>
         </div>
 
@@ -149,7 +148,7 @@ export const MyCheckInsPage: React.FC<MyCheckInsPageProps> = ({ onNavigate, onOp
           <div className="bg-rose-50/70 rounded-2xl p-5 border border-rose-200/80">
             <div className="flex items-center gap-2 text-rose-900 font-bold text-sm mb-2">
               <span className="material-symbols-outlined text-[20px] text-rose-600">cleaning_services</span>
-              <span>Sanctuary Data Purge</span>
+              <span>Reflection Data Purge</span>
             </div>
             <p className="text-xs text-rose-800/80 leading-relaxed mb-4">
               Instantly erase all reflection timestamps, mood records, and notes from this device's memory.

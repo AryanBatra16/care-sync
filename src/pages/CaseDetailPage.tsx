@@ -83,7 +83,7 @@ export const CaseDetailPage: React.FC<CaseDetailPageProps> = ({
             </span>
           </div>
           <p className="text-slate-600 text-xs sm:text-sm">
-            Survivor privacy isolation active • Assigned District: <span className="font-bold text-slate-800">Metro North (Region 2)</span>
+            Privacy-focused review • Assigned District: <span className="font-bold text-slate-800">Metro North (Region 2)</span>
           </p>
         </div>
 
@@ -354,7 +354,7 @@ export const CaseDetailPage: React.FC<CaseDetailPageProps> = ({
                   className="mt-0.5 rounded text-teal-700 focus:ring-teal-500"
                 />
                 <span className={checklist.outreachMessage ? 'line-through text-slate-400' : 'text-slate-800 font-medium'}>
-                  Prepare confidential outreach message via encrypted relay
+                  Prepare confidential outreach message via the counselor relay
                 </span>
               </label>
 

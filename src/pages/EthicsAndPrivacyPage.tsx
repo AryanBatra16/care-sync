@@ -18,8 +18,7 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
           Ethics &amp; Privacy Guarantees
         </h1>
         <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-          A zero-knowledge sanctuary built upon mathematical boundaries, trauma-informed protocols, and uncompromising
-          isolation.
+          A privacy-focused platform built around trauma-informed protocols, clear boundaries, and honest limitations.
         </p>
       </div>
 
@@ -57,18 +56,17 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
         <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-xs flex flex-col justify-between">
           <div>
             <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-800 flex items-center justify-center mb-5 font-bold">
-              <span className="material-symbols-outlined text-[26px]">enhanced_encryption</span>
+              <span className="material-symbols-outlined text-[26px]">privacy_tip</span>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">Zero-Knowledge Cryptographic Isolation</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Privacy and confidentiality</h3>
             <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              All reflection inputs are encrypted on the survivor's client device using AES-GCM-256 with key derivation
-              via Argon2id. Neither server administrators, cloud providers, nor telemetry systems hold the decryption
-              keys.
+              CareSync is a prototype focused on private, confidential support interactions. Do not enter sensitive
+              real-world information because production security controls are not implemented here.
             </p>
           </div>
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Standard: NIST SP 800-38D</span>
-            <span className="text-emerald-700 font-bold">Verified Client-Side</span>
+            <span>Prototype limitation</span>
+            <span className="text-emerald-700 font-bold">Use demo data</span>
           </div>
         </div>
 
@@ -81,12 +79,12 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
             <h3 className="text-xl font-bold text-slate-900 mb-2">Ephemeral In-Memory State</h3>
             <p className="text-slate-600 text-sm leading-relaxed mb-4">
               CareSync maintains zero persistent browser cookies and zero local tracking cookies. When a session
-              concludes or the user hits Quick Exit (ESC), volatile memory buffers are overwritten with zero-bytes.
+              concludes, volatile memory buffers are overwritten with zero-bytes.
             </p>
           </div>
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Buffer Overwrite: DoD 5220.22-M</span>
-            <span className="text-emerald-700 font-bold">Zero Trace</span>
+            <span>Session controls</span>
+            <span className="text-emerald-700 font-bold">Ephemeral by design</span>
           </div>
         </div>
 
@@ -127,12 +125,11 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
         </div>
       </div>
 
-      {/* Technical Architecture Flow */}
+      {/* Support Flow */}
       <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-xs">
-        <h3 className="text-xl font-extrabold text-slate-900 mb-2">Cryptographic Pipeline Topology</h3>
+        <h3 className="text-xl font-extrabold text-slate-900 mb-2">Support workflow</h3>
         <p className="text-slate-600 text-sm mb-8 max-w-2xl leading-relaxed">
-          How survivor telemetry traverses from the client browser to the counselor queue without exposing identifying
-          information.
+          How a check-in moves from the private session to the counselor queue in this demonstration.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
@@ -141,7 +138,7 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
               1
             </span>
             <h4 className="text-sm font-bold text-slate-900 mb-1">Local Sandbox</h4>
-            <p className="text-xs text-slate-500">In-browser AES encryption with ephemeral salt</p>
+            <p className="text-xs text-slate-500">Private check-in session</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col items-center">
@@ -149,7 +146,7 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
               2
             </span>
             <h4 className="text-sm font-bold text-slate-900 mb-1">Anonymizing Proxy</h4>
-            <p className="text-xs text-slate-500">IP scrubbing and metadata stripping</p>
+            <p className="text-xs text-slate-500">Context review</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col items-center">
@@ -165,7 +162,7 @@ export const EthicsAndPrivacyPage: React.FC<EthicsAndPrivacyPageProps> = ({ onNa
               4
             </span>
             <h4 className="text-sm font-bold text-slate-900 mb-1">Counselor Queue</h4>
-            <p className="text-xs text-slate-500">Anonymous hash presented for clinical support</p>
+            <p className="text-xs text-slate-500">Demo case reference for clinical support</p>
           </div>
         </div>
       </div>

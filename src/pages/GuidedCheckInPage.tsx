@@ -99,8 +99,8 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                 <span className="material-symbols-outlined text-[20px]">spa</span>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900">CareSync Sanctuary AI</h3>
-                <p className="text-xs text-slate-500">Zero-trace conversational companion</p>
+                <h3 className="text-sm font-bold text-slate-900">CareSync Care Companion</h3>
+                <p className="text-xs text-slate-500">Private conversational companion</p>
               </div>
             </div>
 
@@ -196,7 +196,7 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
               <div className="flex items-center gap-1.5 text-xs text-slate-500">
                 <span className="material-symbols-outlined text-[16px] text-emerald-600">lock</span>
-                <span>Encrypted on-device before transmission (AES-GCM-256)</span>
+                <span>Your messages are intended for this private session.</span>
               </div>
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -261,7 +261,7 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
           <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs">
             <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px] text-teal-700">shield</span>
-              <span>Sanctuary Guarantees</span>
+              <span>Privacy Guarantees</span>
             </h3>
             <div className="space-y-3.5">
               <div className="flex items-start gap-3 text-xs text-slate-600">
@@ -269,8 +269,8 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                   <span className="material-symbols-outlined text-[14px]">check</span>
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800">Zero Device Logs</p>
-                  <p className="text-slate-500 mt-0.5">Session cookies and local cache self-purge on close.</p>
+                  <p className="font-bold text-slate-800">Session awareness</p>
+                  <p className="text-slate-500 mt-0.5">You can close this tab at any time — nothing is saved.</p>
                 </div>
               </div>
 
@@ -279,8 +279,8 @@ export const GuidedCheckInPage: React.FC<GuidedCheckInPageProps> = ({
                   <span className="material-symbols-outlined text-[14px]">check</span>
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800">No Location Tracking</p>
-                  <p className="text-slate-500 mt-0.5">IP addresses are hashed and discarded at ingress proxy.</p>
+                  <p className="font-bold text-slate-800">Location privacy reminder</p>
+                  <p className="text-slate-500 mt-0.5">Avoid entering identifying or location details in this demo.</p>
                 </div>
               </div>
 

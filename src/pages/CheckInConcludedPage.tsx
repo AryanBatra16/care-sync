@@ -6,14 +6,12 @@ interface CheckInConcludedPageProps {
   onNavigate: (page: PageId) => void;
   onOpenGrounding: () => void;
   onOpenCounselor: () => void;
-  onQuickExit: () => void;
 }
 
 export const CheckInConcludedPage: React.FC<CheckInConcludedPageProps> = ({
   onNavigate,
   onOpenGrounding,
   onOpenCounselor,
-  onQuickExit,
 }) => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -25,25 +23,25 @@ export const CheckInConcludedPage: React.FC<CheckInConcludedPageProps> = ({
 
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Zero-Knowledge Check-In Concluded</span>
+          <span>Private Check-In Concluded</span>
         </div>
 
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
           Your Check-In Has Been Safely Recorded
         </h1>
         <p className="text-slate-600 text-sm sm:text-base max-w-lg leading-relaxed mb-8">
-          Your thoughts have been encrypted with your personal ephemeral key. No unencrypted records exist on any cloud
-          server or browser cache.
+          Your check-in has ended. This prototype is designed for demonstration and should not be used for sensitive
+          personal information.
         </p>
 
         {/* Cryptographic Session Receipt Box */}
         <div className="w-full max-w-md bg-slate-50 border border-slate-200/90 rounded-2xl p-5 mb-8 text-left space-y-3">
           <div className="flex items-center justify-between text-xs pb-2.5 border-b border-slate-200">
             <span className="text-slate-500 font-semibold uppercase tracking-wider text-[10px]">
-              Session Fingerprint
+              Session Reference
             </span>
             <span className="font-mono font-bold text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded">
-              0x4e9a...7b2f8
+              DEMO-7B2F8
             </span>
           </div>
 
@@ -53,16 +51,16 @@ export const CheckInConcludedPage: React.FC<CheckInConcludedPageProps> = ({
           </div>
 
           <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-500">Isolation Layer:</span>
+            <span className="text-slate-500">Privacy note:</span>
             <span className="font-semibold text-slate-800 flex items-center gap-1">
-              <span className="material-symbols-outlined text-[15px] text-emerald-600">verified</span>
-              <span>AES-GCM-256 + Argon2id</span>
+              <span className="material-symbols-outlined text-[15px] text-emerald-600">info</span>
+              <span>Use demo data only</span>
             </span>
           </div>
 
           <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-500">Browser Cache:</span>
-            <span className="font-semibold text-slate-800">Scrubbed on tab close</span>
+            <span className="text-slate-500">Session state:</span>
+            <span className="font-semibold text-slate-800">Cleared</span>
           </div>
         </div>
 
@@ -89,7 +87,7 @@ export const CheckInConcludedPage: React.FC<CheckInConcludedPageProps> = ({
               onClick={() => onNavigate('my-check-ins')}
               className="py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors cursor-pointer"
             >
-              View My Sanctuary
+              View My Check-Ins
             </button>
             <button
               onClick={() => onNavigate('home')}
@@ -100,16 +98,9 @@ export const CheckInConcludedPage: React.FC<CheckInConcludedPageProps> = ({
           </div>
         </div>
 
-        {/* Urgent Exit Reminder */}
+        {/* Session Reminder */}
         <div className="mt-10 pt-6 border-t border-slate-100 w-full flex items-center justify-center gap-4 text-xs text-slate-400">
           <span>Close window anytime to wipe memory</span>
-          <span>•</span>
-          <button
-            onClick={onQuickExit}
-            className="text-rose-600 hover:text-rose-700 font-semibold underline cursor-pointer"
-          >
-            Instant Discretion Exit
-          </button>
         </div>
       </div>
     </div>

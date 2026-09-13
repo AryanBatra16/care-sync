@@ -51,7 +51,7 @@ export const ReflectionModal: React.FC<ReflectionModalProps> = ({ reflection, on
         <div className="flex items-center justify-between pt-2">
           <span className="text-xs text-[#3e4947] flex items-center gap-1.5 font-medium">
             <span className="material-symbols-outlined text-[16px] text-emerald-600">verified_user</span>
-            Locally Decrypted (Zero Cloud Copy)
+            Private session view
           </span>
           <button
             onClick={onClose}

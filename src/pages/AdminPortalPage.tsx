@@ -69,7 +69,7 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
             Regional Administrative Overview
           </h1>
           <p className="text-slate-600 text-sm mt-1">
-            Aggregate survivor wellbeing indices, district safety resource allocation, and zero-knowledge privacy benchmarks.
+            Aggregate survivor wellbeing indices, district safety resource allocation, and privacy program metrics.
           </p>
         </div>
 
@@ -84,13 +84,6 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
             <option value="Statewide Victim Services Oversight">Statewide Victim Services Oversight</option>
           </select>
 
-          <button
-            onClick={() => alert('Executive Governance Audit Report compiled & signed with HMAC-SHA256.')}
-            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer shrink-0"
-          >
-            <span className="material-symbols-outlined text-[16px]">print</span>
-            <span>Export Report</span>
-          </button>
         </div>
       </div>
 
@@ -128,12 +121,12 @@ export const AdminPortalPage: React.FC<AdminPortalPageProps> = ({ onNavigate }) 
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Zero-Trace Privacy Audit</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Privacy Program Review</p>
           <div className="flex items-baseline gap-2 mt-1">
             <span className="text-3xl font-extrabold text-teal-700">100%</span>
             <span className="material-symbols-outlined text-[20px] text-teal-700">verified</span>
           </div>
-          <p className="text-xs text-slate-500 mt-2">Passed continuous ISO-27701 differential privacy audit</p>
+          <p className="text-xs text-slate-500 mt-2">Demo metric for privacy program monitoring</p>
         </div>
       </div>
 

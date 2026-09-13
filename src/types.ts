@@ -1,4 +1,5 @@
 export type PageId =
+  | 'landing'
   | 'home'
   | 'guided-check-in'
   | 'check-in-concluded'

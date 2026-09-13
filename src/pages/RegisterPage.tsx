@@ -21,6 +21,19 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       <div className="max-w-2xl mx-auto bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 sm:p-10">
+        {/* Centered clickable brand mark */}
+        <button
+          onClick={() => onNavigate('landing')}
+          className="flex items-center justify-center gap-2.5 mx-auto mb-6 cursor-pointer group"
+        >
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#005c55] to-[#0f766e] flex items-center justify-center text-white shadow-sm shadow-teal-900/10 transition-transform group-hover:scale-105">
+            <span className="material-symbols-outlined text-[19px]">spa</span>
+          </div>
+          <span className="text-lg font-bold tracking-tight text-[#0b1c30] group-hover:text-[#005c55] transition-colors">
+            CareSync
+          </span>
+        </button>
+
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold uppercase tracking-wider mb-2">
             <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
@@ -30,18 +43,17 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
             Create Your CareSync Access
           </h1>
           <p className="text-slate-600 text-xs sm:text-sm mt-1">
-            Survivors can check in immediately without an account. Use this form if you wish to persist an encrypted
-            vault or register as a care provider.
+            Survivors can check in immediately without an account. Use this form if you wish to save a profile or
+            register as a care provider.
           </p>
         </div>
 
         {submitted ? (
           <div className="p-8 rounded-2xl bg-teal-50 border border-teal-200 text-center flex flex-col items-center">
             <span className="material-symbols-outlined text-[48px] text-[#005c55] mb-2">mark_email_read</span>
-            <h3 className="text-lg font-bold text-slate-900">Encrypted Invitation Dispatched</h3>
+            <h3 className="text-lg font-bold text-slate-900">Invitation Dispatched</h3>
             <p className="text-xs text-slate-600 mt-2 max-w-md leading-relaxed">
-              We have generated your client-side key envelope. Please confirm via your provided relay handle to complete
-              zero-knowledge initialization.
+              We have prepared your invitation. Please confirm via your provided contact method to complete setup.
             </p>
             <button
               onClick={() => onNavigate('login')}
@@ -106,7 +118,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Passphrase (Argon2id Master Key)</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Passphrase</label>
               <input
                 type="password"
                 required
@@ -126,8 +138,8 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
                 className="mt-0.5 rounded text-teal-700 focus:ring-teal-500"
               />
               <span>
-                I agree to the <span className="font-semibold text-slate-900">Zero-Knowledge Sanctuary Charter</span>{' '}
-                and understand that lost encryption keys cannot be recovered by server administrators.
+                I agree to the <span className="font-semibold text-slate-900">CareSync privacy terms</span> and understand
+                that this prototype should not be used with sensitive real-world information.
               </span>
             </label>
 
@@ -135,7 +147,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
               type="submit"
               className="w-full py-3 rounded-xl bg-[#005c55] hover:bg-[#0f766e] text-white font-bold text-sm shadow-md transition-all cursor-pointer"
             >
-              Initialize Encrypted Identity
+              Create Account
             </button>
 
             <div className="text-center pt-3 text-xs text-slate-500">

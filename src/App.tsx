@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PageId, CheckInReflection, UserRole } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -12,9 +12,9 @@ import { Footer } from './components/Footer';
 import { GroundingModal } from './components/modals/GroundingModal';
 import { CounselorModal } from './components/modals/CounselorModal';
 import { ReflectionModal } from './components/modals/ReflectionModal';
-import { QuickExitOverlay } from './components/modals/QuickExitOverlay';
 
 // Pages
+import { LandingPage } from './pages/LandingPage';
 import { HomePage } from './pages/HomePage';
 import { GuidedCheckInPage } from './pages/GuidedCheckInPage';
 import { CheckInConcludedPage } from './pages/CheckInConcludedPage';
@@ -30,7 +30,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>('landing');
   const [selectedCaseId, setSelectedCaseId] = useState<string>('CASE-1042');
   const [userRole, setUserRole] = useState<UserRole>('guest');
 
@@ -38,18 +38,6 @@ export default function App() {
   const [groundingOpen, setGroundingOpen] = useState(false);
   const [counselorOpen, setCounselorOpen] = useState(false);
   const [reflectionModalItem, setReflectionModalItem] = useState<CheckInReflection | null>(null);
-  const [quickExitOpen, setQuickExitOpen] = useState(false);
-
-  // Global ESC key listener for Safety Quick Exit
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setQuickExitOpen(true);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
@@ -61,28 +49,25 @@ export default function App() {
     handleNavigate('case-detail');
   };
 
-  const handleWipeAndRedirect = () => {
-    // Purge local storage and session items if any
-    try {
-      sessionStorage.clear();
-      localStorage.clear();
-    } catch {
-      // Ignored
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9ff] text-[#0b1c30]">
       {/* Navigation Header */}
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onQuickExit={() => setQuickExitOpen(true)}
       />
 
       {/* Main Content Area (padded for fixed header) */}
       <main className="flex-1 pt-16 md:pt-20">
-        {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
+        {currentPage === 'landing' && <LandingPage onNavigate={handleNavigate} />}
+
+        {currentPage === 'home' && (
+          <HomePage
+            onNavigate={handleNavigate}
+            onOpenGrounding={() => setGroundingOpen(true)}
+            onOpenReflection={(item) => setReflectionModalItem(item)}
+          />
+        )}
 
         {currentPage === 'guided-check-in' && (
           <GuidedCheckInPage
@@ -97,7 +82,6 @@ export default function App() {
             onNavigate={handleNavigate}
             onOpenGrounding={() => setGroundingOpen(true)}
             onOpenCounselor={() => setCounselorOpen(true)}
-            onQuickExit={() => setQuickExitOpen(true)}
           />
         )}
 
@@ -141,7 +125,6 @@ export default function App() {
         {currentPage === 'settings' && (
           <SettingsPage
             onNavigate={handleNavigate}
-            onQuickExit={() => setQuickExitOpen(true)}
           />
         )}
 
@@ -178,12 +161,6 @@ export default function App() {
       <ReflectionModal
         reflection={reflectionModalItem}
         onClose={() => setReflectionModalItem(null)}
-      />
-
-      <QuickExitOverlay
-        isOpen={quickExitOpen}
-        onCancel={() => setQuickExitOpen(false)}
-        onConfirmWipe={handleWipeAndRedirect}
       />
     </div>
   );
